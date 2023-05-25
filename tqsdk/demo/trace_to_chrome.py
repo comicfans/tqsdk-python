@@ -98,7 +98,7 @@ def filter_my_event_log_only(json_stream):
 def convert(trace):
     chrome_json = convert_to_chrome_trace(filter_my_event_log_only(load_file_as_line_by_line_json(trace)))
 
-    with open(args.trace + '.chrome.json','w') as f:
+    with open(trace + '.chrome.json','w') as f:
         f.write(json.dumps(chrome_json, indent=4, sort_keys = True, default = str))
 
 
