@@ -18,7 +18,7 @@ from tqsdk.diff import _get_obj
 from tqsdk.lib.utils import _check_volume_limit, _check_direction, _check_offset, _check_volume, _check_price, \
     _check_offset_priority
 from tqsdk.tradeable import TqAccount, TqKq, TqSim
-
+import structlog
 
 class TargetPosTaskSingleton(type):
     """
@@ -227,6 +227,20 @@ class TargetPosTask(object, metaclass=TargetPosTaskSingleton):
         self._time_update_task = self._api.create_task(self._update_time_from_md())  # 监听行情更新并记录当时本地时间的task
         self._local_time_record = time.time() - 0.005  # 更新最新行情时间时的本地时间
         self._local_time_record_update_chan = TqChan(self._api, last_only=True)  # 监听 self._local_time_record 更新
+        self._log = structlog.get_logger(symbol = symbol,
+                                         clazz = "TargetPosTask",
+                                         id = id(self),
+                                         task = id(self._task),
+                                         children = [id(x) for x in [self._pos_chan,
+                                                                     self._task,
+                                                                     self._time_update_task,
+                                                                     self._local_time_record_update_chan]])
+
+        self._log.debug("create",
+                        children = [id(x) for x in [self._pos_chan,
+                                                                     self._task,
+                                                                     self._time_update_task,
+                                                                     self._local_time_record_update_chan]])
 
     def set_target_volume(self, volume: int) -> None:
         """
@@ -326,25 +340,95 @@ class TargetPosTask(object, metaclass=TargetPosTaskSingleton):
 
     async def _update_time_from_md(self):
         """监听行情更新并记录当时本地时间的task"""
+        async_log = self._log.bind(current_task = id(asyncio.current_task(self._api._loop)))
         try:
             chan = TqChan(self._api, last_only=True)
-            self._quote = await self._api.get_quote(self._symbol)
+            q = self._api.get_quote(self._symbol)
+            async_log.debug("self._quote = await self._api.get_quote(self._symbol)",
+                            my_event = "await",
+                            depends = [id(q)],
+                            check_rev = self._api._check_rev,
+                            event_rev = self._api._event_rev,
+                            wait_update_counter = self._api._wait_update_counter)
+            self._quote = await q
+            async_log.debug("self._quote = await self._api.get_quote(self._symbol)",
+                            my_event = "resume",
+                            check_rev = self._api._check_rev,
+                            event_rev = self._api._event_rev,
+                            wait_update_counter = self._api._wait_update_counter)
+
             self._api.register_update_notify(self._quote, chan)  # quote有更新时: 更新记录的时间
             if isinstance(self._api._backtest, TqBacktest):
                 # 回测情况下，在收到回测时间有更新的时候，也需要更新记录的时间
                 self._api.register_update_notify(_get_obj(self._api._data, ["_tqsdk_backtest"]), chan)
+
+            async_log.debug("async for _ in chan",
+                            my_event="await",
+                            depends = [id(chan)],
+                            check_rev = self._api._check_rev,
+                            event_rev = self._api._event_rev,
+                            wait_update_counter = self._api._wait_update_counter)
+
             async for _ in chan:
+                async_log.debug("async for _ in chan",
+                                my_event="resume",
+                                check_rev = self._api._check_rev,
+                                event_rev = self._api._event_rev,
+                                wait_update_counter = self._api._wait_update_counter)
                 self._local_time_record = time.time() - 0.005  # 更新最新行情时间时的本地时间
                 self._local_time_record_update_chan.send_nowait(True)  # 通知记录的时间有更新
+                async_log.debug("async for _ in chan",
+                                my_event="await",
+                                depends = [id(chan)],
+                                check_rev = self._api._check_rev,
+                                event_rev = self._api._event_rev,
+                                wait_update_counter = self._api._wait_update_counter)
         finally:
+            async_log.debug("await chan.close()",
+                            my_event="await",
+                            depends = [id(chan)],
+                            check_rev = self._api._check_rev,
+                            event_rev = self._api._event_rev,
+                            wait_update_counter = self._api._wait_update_counter)
             await chan.close()
+            async_log.debug("await chan.close()",
+                            my_event="resume",
+                            check_rev = self._api._check_rev,
+                            event_rev = self._api._event_rev,
+                            wait_update_counter = self._api._wait_update_counter)
 
     async def _target_pos_task(self):
         """负责调整目标持仓的task"""
         all_tasks = []
+        async_log = self._log.bind(current_task = id(asyncio.current_task(self._api._loop)))
         try:
-            self._quote = await self._api.get_quote(self._symbol)
+            q = self._api.get_quote(self._symbol)
+            async_log.debug("self._quote = await self._api.get_quote(self._symbol)",
+                            my_event="await",
+                            depends = [id(q)],
+                            external_depends = True,
+                            check_rev = self._api._check_rev,
+                            event_rev = self._api._event_rev,
+                            wait_update_counter = self._api._wait_update_counter)
+            self._quote = await q
+            async_log.debug("self._quote = await self._api.get_quote(self._symbol)",
+                            my_event="resume",
+                            check_rev = self._api._check_rev,
+                            event_rev = self._api._event_rev,
+                            wait_update_counter = self._api._wait_update_counter)
+
+            async_log.debug("async for target_pos in self._pos_chan",
+                            my_event="await",
+                            depends = [id(self._pos_chan)],
+                            check_rev = self._api._check_rev,
+                            event_rev = self._api._event_rev,
+                            wait_update_counter = self._api._wait_update_counter)
             async for target_pos in self._pos_chan:
+                async_log.debug("async for target_pos in self._pos_chan",
+                                my_event="resume",
+                                check_rev = self._api._check_rev,
+                                event_rev = self._api._event_rev,
+                                wait_update_counter = self._api._wait_update_counter)
                 # lib 中对于时间判断的方案:
                 #   如果当前时间（模拟交易所时间）不在交易时间段内，则：等待直到行情更新
                 #   行情更新（即下一交易时段开始）后：获取target_pos最新的目标仓位, 开始调整仓位
@@ -360,7 +444,18 @@ class TargetPosTask(object, metaclass=TargetPosTaskSingleton):
                         time_record = self._local_time_record
                     if _is_in_trading_time(self._quote, cur_dt, time_record):
                         break
+                    async_log.debug("await self._local_time_record_update_chan.recv()",
+                                    my_event="await",
+                                    depends = [id(self._local_time_record_update_chan)],
+                                    check_rev = self._api._check_rev,
+                                    event_rev = self._api._event_rev,
+                                    wait_update_counter = self._api._wait_update_counter)
                     await self._local_time_record_update_chan.recv()
+                    async_log.debug("await self._local_time_record_update_chan.recv()",
+                                    my_event="resume",
+                                    check_rev = self._api._check_rev,
+                                    event_rev = self._api._event_rev,
+                                    wait_update_counter = self._api._wait_update_counter)
 
                 target_pos = self._pos_chan.recv_latest(target_pos)  # 获取最后一个target_pos目标仓位
                 # 确定调仓增减方向
@@ -368,7 +463,18 @@ class TargetPosTask(object, metaclass=TargetPosTaskSingleton):
                 pending_forzen = 0
                 for each_priority in self._offset_priority + ",":  # 按不同模式的优先级顺序报出不同的offset单，股指(“昨开”)平昨优先从不平今就先报平昨，原油平今优先("今昨开")就报平今
                     if each_priority == ",":
+                        async_log.debug("await gather(*[each._task for each in all_tasks])",
+                                        my_event="await",
+                                        depends = [id(x._task) for x in all_tasks],
+                                        check_rev = self._api._check_rev,
+                                        event_rev = self._api._event_rev,
+                                        wait_update_counter = self._api._wait_update_counter)
                         await gather(*[each._task for each in all_tasks])
+                        async_log.debug("await gather(*[each._task for each in all_tasks])",
+                                        my_event="resume",
+                                        check_rev = self._api._check_rev,
+                                        event_rev = self._api._event_rev,
+                                        wait_update_counter = self._api._wait_update_counter)
                         pending_forzen = 0
                         all_tasks = []
                         continue
@@ -389,9 +495,31 @@ class TargetPosTask(object, metaclass=TargetPosTaskSingleton):
             # 执行 task.cancel() 时, 删除掉该 symbol 对应的 TargetPosTask 实例
             # self._account 类型为 TqSim/TqKq/TqAccount，都包括 _account_key 变量
             TargetPosTaskSingleton._instances.pop(self._account._account_key + "#" + self._symbol, None)
+            async_log.debug("await self._pos_chan.close()",
+                            my_event="await",
+                            depends = [id(self._pos_chan)],
+                            check_rev = self._api._check_rev,
+                            event_rev = self._api._event_rev,
+                            wait_update_counter = self._api._wait_update_counter)
             await self._pos_chan.close()
+            async_log.debug("await self._pos_chan.close()",
+                            my_event="resume",
+                            check_rev = self._api._check_rev,
+                            event_rev = self._api._event_rev,
+                            wait_update_counter = self._api._wait_update_counter)
             self._time_update_task.cancel()
+            async_log.debug("await asyncio.gather(*([t._task for t in all_tasks] + [self._time_update_task]), return_exceptions=True)",
+                            my_event="await",
+                            depends = [id(x._task) for x in all_tasks] + [id(self._time_update_task)],
+                            check_rev = self._api._check_rev,
+                            event_rev = self._api._event_rev,
+                            wait_update_counter = self._api._wait_update_counter)
             await asyncio.gather(*([t._task for t in all_tasks] + [self._time_update_task]), return_exceptions=True)
+            async_log.debug("await asyncio.gather(*([t._task for t in all_tasks] + [self._time_update_task]), return_exceptions=True)",
+                            my_event="resume",
+                            check_rev = self._api._check_rev,
+                            event_rev = self._api._event_rev,
+                            wait_update_counter = self._api._wait_update_counter)
 
     def cancel(self):
         """
@@ -490,10 +618,26 @@ class InsertOrderUntilAllTradedTask(object):
         self._trade_chan = trade_chan
         self._trade_objs_chan = trade_objs_chan
         self._task = self._api.create_task(self._run())
+        self._log = structlog.get_logger(symbol = symbol, id = id(self),
+                                         task = id(self._task), clazz = "InsertOrderUntilAllTradedTask")
+        self._log.debug("create", children = [id(x) for x in [self._trade_chan, self._trade_objs_chan, self._task]])
 
     async def _run(self):
         """负责追价下单的task"""
-        self._quote = await self._api.get_quote(self._symbol)
+        async_log = self._log.bind(current_task = id(asyncio.current_task(self._api._loop)))
+        quote = self._api.get_quote(self._symbol)
+        async_log.debug("self._quote = await self._api.get_quote(self._symbol)",
+                        my_event="await",
+                        depends = [id(quote)],
+                        check_rev = self._api._check_rev,
+                        event_rev = self._api._event_rev,
+                        wait_update_counter = self._api._wait_update_counter)
+        self._quote = await quote
+        async_log.debug("self._quote = await self._api.get_quote(self._symbol)",
+                        my_event="resume",
+                        check_rev = self._api._check_rev,
+                        event_rev = self._api._event_rev,
+                        wait_update_counter = self._api._wait_update_counter)
         while self._volume != 0:
             limit_price = self._get_price(self._direction)
             if limit_price != limit_price:
@@ -506,14 +650,41 @@ class InsertOrderUntilAllTradedTask(object):
             insert_order_task = InsertOrderTask(self._api, self._symbol, self._direction, self._offset,
                                                 this_volume, limit_price=limit_price, trade_chan=self._trade_chan,
                                                 trade_objs_chan=self._trade_objs_chan, account=self._account)
+
+            async_log.debug("order = await insert_order_task._order_chan.recv()",
+                            my_event="await",
+                            depends = [id(insert_order_task._order_chan)],
+                            check_rev = self._api._check_rev,
+                            event_rev = self._api._event_rev,
+                            wait_update_counter = self._api._wait_update_counter)
             order = await insert_order_task._order_chan.recv()
+
+            async_log.debug("order = await insert_order_task._order_chan.recv()",
+                            my_event="resume",
+                            check_rev = self._api._check_rev,
+                            event_rev = self._api._event_rev,
+                            wait_update_counter = self._api._wait_update_counter)
+
             check_chan = TqChan(self._api, last_only=True)
             check_task = self._api.create_task(self._check_price(check_chan, limit_price, order['order_id']))
             try:
                 # 当父 task 被 cancel，子 task 如果正在执行，也会捕获 CancelError
                 # 添加 asyncio.shield 后，如果父 task 被 cancel，asyncio.shield 也会被 cancel，但是子 task 不会收到 CancelError
                 # 这里需要 asyncio.shield，是因为 insert_order_task._task 预期不会被 cancel， 应该等待到 order 状态是 FINISHED 才返回
+                async_log.debug("await asyncio.shield(insert_order_task._task)",
+                                my_event="await",
+                                depends = [id(insert_order_task._task)],
+                                check_rev = self._api._check_rev,
+                                event_rev = self._api._event_rev,
+                                wait_update_counter = self._api._wait_update_counter)
+
                 await asyncio.shield(insert_order_task._task)
+                async_log.debug("await asyncio.shield(insert_order_task._task)",
+                                my_event="resume",
+                                check_rev = self._api._check_rev,
+                                event_rev = self._api._event_rev,
+                                wait_update_counter = self._api._wait_update_counter)
+
                 order = insert_order_task._order_chan.recv_latest(order)
                 self._volume -= (this_volume - order['volume_left'])
                 if order['volume_left'] != 0 and not check_task.done():
@@ -523,13 +694,50 @@ class InsertOrderUntilAllTradedTask(object):
                 if self._api.get_order(order['order_id'], account=self._account).status == "ALIVE":
                     # 当 task 被 cancel 时，主动撤掉未成交的挂单
                     self._api.cancel_order(order['order_id'], account=self._account)
+
+                async_log.debug("await check_chan.close()",
+                                my_event="await",
+                                depends = [id(check_chan)],
+                                check_rev = self._api._check_rev,
+                                event_rev = self._api._event_rev,
+                                wait_update_counter = self._api._wait_update_counter)
                 await check_chan.close()
+                async_log.debug("await check_chan.close()",
+                                my_event="resume",
+                                check_rev = self._api._check_rev,
+                                event_rev = self._api._event_rev,
+                                wait_update_counter = self._api._wait_update_counter)
+
+                async_log.debug("await check_task",
+                                my_event="await",
+                                depends = [id(check_task)],
+                                check_rev = self._api._check_rev,
+                                event_rev = self._api._event_rev,
+                                wait_update_counter = self._api._wait_update_counter)
                 await check_task
+
+                async_log.debug("check_task",
+                                my_event="resume",
+                                check_rev = self._api._check_rev,
+                                event_rev = self._api._event_rev,
+                                wait_update_counter = self._api._wait_update_counter)
                 # 在每次退出时，都等到 insert_order_task 执行完，此时 order 状态一定是 FINISHED；self._trade_chan 也一定会收到全部的成交手数
                 try:
                     # 当用户调用 api.close(), 会主动 cancel 所有由 api 创建的 task，包括 TargetPosTask._target_pos_task，
                     # 此时，insert_order_task._task 如果有未完成委托单，会永远等待下去（因为网络连接已经断开），所以这里增加超时机制。
+                    async_log.debug("await asyncio.wait_for(insert_order_task._task, timeout=30)",
+                                    my_event="await",
+                                    depends= [id(insert_order_task._task)],
+                                    check_rev = self._api._check_rev,
+                                    event_rev = self._api._event_rev,
+                                    wait_update_counter = self._api._wait_update_counter)
                     await asyncio.wait_for(insert_order_task._task, timeout=30)
+
+                    async_log.debug("await asyncio.wait_for(insert_order_task._task, timeout=30)",
+                                    my_event="resume",
+                                    check_rev = self._api._check_rev,
+                                    event_rev = self._api._event_rev,
+                                    wait_update_counter = self._api._wait_update_counter)
                 except asyncio.TimeoutError:
                     raise Exception(f"InsertOrderTask 执行超时，30s 内报单未执行完。此错误产生可能的原因："
                                     f"可能是用户调用了 api.close() 之后，已经创建的 InsertOrderTask 无法正常结束。")
@@ -556,14 +764,60 @@ class InsertOrderUntilAllTradedTask(object):
 
     async def _check_price(self, update_chan, order_price, order_id):
         """判断价格是否变化的task"""
-        async with self._api.register_update_notify(chan=update_chan):
+        async_log = self._log.bind(current_task = id(asyncio.current_task(self._api._loop)))
+        temp_ch = self._api.register_update_notify(chan=update_chan)
+        async_log.debug("async with self._api.register_update_notify(chan=update_chan) __enter__",
+                        my_event = "await",
+                        depends = [id(temp_ch)],
+                        check_rev = self._api._check_rev,
+                        event_rev = self._api._event_rev,
+                        wait_update_counter = self._api._wait_update_counter)
+
+        async with temp_ch:
+            async_log.debug("async with self._api.register_update_notify(chan=update_chan) __enter__",
+                            my_event = "resume",
+                            check_rev = self._api._check_rev,
+                            event_rev = self._api._event_rev,
+                            wait_update_counter = self._api._wait_update_counter)
+
+            async_log.debug("async for _ in update_chan",
+                            my_event = "await",
+                            depends = [id(update_chan)],
+                            check_rev = self._api._check_rev,
+                            event_rev = self._api._event_rev,
+                            wait_update_counter = self._api._wait_update_counter)
             async for _ in update_chan:
+                async_log.debug("async for _ in update_chan",
+                                my_event = "resume",
+                                depends = [id(update_chan)],
+                                check_rev = self._api._check_rev,
+                                event_rev = self._api._event_rev,
+                                wait_update_counter = self._api._wait_update_counter)
+
                 new_price = self._get_price(self._direction)
                 if (self._direction == "BUY" and new_price > order_price) or (
                         self._direction == "SELL" and new_price < order_price):
                     self._api.cancel_order(order_id, account=self._account)
                     break
 
+                async_log.debug("for _ in update_chan",
+                                my_event = "await",
+                                depends = [id(update_chan)],
+                                check_rev = self._api._check_rev,
+                                event_rev = self._api._event_rev,
+                                wait_update_counter = self._api._wait_update_counter)
+            async_log.debug("async with self._api.register_update_notify(chan=update_chan) __exit__",
+                            my_event = "await",
+                            depends = [id(temp_ch)],
+                            check_rev = self._api._check_rev,
+                            event_rev = self._api._event_rev,
+                            wait_update_counter = self._api._wait_update_counter)
+
+        async_log.debug("async with self._api.register_update_notify(chan=update_chan) __exit__",
+                        my_event = "resume",
+                        check_rev = self._api._check_rev,
+                        event_rev = self._api._event_rev,
+                        wait_update_counter = self._api._wait_update_counter)
 
 class InsertOrderTask(object):
     """下单task （注：此类主要在tqsdk内部使用，并非简单用法，不建议用户使用）"""
@@ -607,32 +861,121 @@ class InsertOrderTask(object):
         self._trade_chan = trade_chan
         self._trade_objs_chan = trade_objs_chan
         self._task = self._api.create_task(self._run())
+        self._log = structlog.get_logger(symbol = symbol, id = id(self),
+                                         task = id(self._task), clazz = "InsertOrderTask")
+        self._log.debug("create", children = [id(x) for x in [self._order_chan, self._trade_chan, self._trade_objs_chan, self._task]])
 
     async def _run(self):
         """负责下单的task"""
+        async_log = self._log.bind(current_task = id(asyncio.current_task(self._api._loop)))
         order_id = utils._generate_uuid("PYSDK_target")
         order = self._api.insert_order(self._symbol, self._direction, self._offset, self._volume, self._limit_price,
                                        order_id=order_id, account=self._account)
         last_order = order.copy()  # 保存当前 order 的状态
         last_left = self._volume
         all_trades_id = set()  # 记录所有的 trade_id
-        async with self._api.register_update_notify() as update_chan:
+        update_chan = self._api.register_update_notify()
+        async_log.debug("with self._api.register_update_notify() __enter__",
+                        my_event="await",
+                        depends = [id(update_chan)],
+                        check_rev = self._api._check_rev,
+                        event_rev = self._api._event_rev,
+                        wait_update_counter = self._api._wait_update_counter)
+        async with update_chan:
+            async_log.debug("with self._api.register_update_notify() __enter__",
+                            my_event="resume",
+                            check_rev = self._api._check_rev,
+                            event_rev = self._api._event_rev,
+                            wait_update_counter = self._api._wait_update_counter)
+
+            async_log.debug('await self._order_chan.send({k: v for k, v in last_order.items() if not k.startswith("_")})',
+                            my_event="await",
+                            depends = [id(self._order_chan)],
+                            check_rev = self._api._check_rev,
+                            event_rev = self._api._event_rev,
+                            wait_update_counter = self._api._wait_update_counter)
             await self._order_chan.send({k: v for k, v in last_order.items() if not k.startswith("_")})  # 将副本的数据及所有权转移
+            async_log.debug('await self._order_chan.send({k: v for k, v in last_order.items() if not k.startswith("_")})',
+                            my_event="resume",
+                            depends = [id(self._order_chan)],
+                            check_rev = self._api._check_rev,
+                            event_rev = self._api._event_rev,
+                            wait_update_counter = self._api._wait_update_counter)
+
             while order.status != "FINISHED" or (order.volume_orign - order.volume_left) != sum(
                     [trade.volume for trade in order.trade_records.values()]):
+
+                async_log.debug("await update_chan.recv()",
+                                my_event="await",
+                                depends = [id(update_chan)],
+                                check_rev = self._api._check_rev,
+                                event_rev = self._api._event_rev,
+                                wait_update_counter = self._api._wait_update_counter)
                 await update_chan.recv()
+                async_log.debug("await update_chan.recv()",
+                                my_event="resume",
+                                check_rev = self._api._check_rev,
+                                event_rev = self._api._event_rev,
+                                wait_update_counter = self._api._wait_update_counter)
                 if order.volume_left != last_left:
                     vol = last_left - order.volume_left
                     last_left = order.volume_left
                     if self._trade_chan:
+                        async_log.debug('await self._trade_chan.send(vol if order.direction == "BUY" else -vol)',
+                                        my_event="await",
+                                        depends = [id(self._trade_chan)],
+                                        check_rev = self._api._check_rev,
+                                        event_rev = self._api._event_rev,
+                                        wait_update_counter = self._api._wait_update_counter)
                         await self._trade_chan.send(vol if order.direction == "BUY" else -vol)
+                        async_log.debug('await self._trade_chan.send(vol if order.direction == "BUY" else -vol)',
+                                        my_event="resume",
+                                        check_rev = self._api._check_rev,
+                                        event_rev = self._api._event_rev,
+                                        wait_update_counter = self._api._wait_update_counter)
                 if self._trade_objs_chan:
                     # 当前用户需要接受 trade_obj，才会运行以下代码
                     rest_trades_id = set(order.trade_records) - all_trades_id
                     for trade_id in rest_trades_id:
                         # 新收到的 trade 发送到 self._trade_objs_chan
+                        async_log.debug('await self._trade_objs_chan.send({k: v for k, v in order.trade_records[trade_id].items() if not k.startswith("_")})',
+                                        my_event="await",
+                                        depends = [id(self._trade_objs_chan)],
+                                        check_rev = self._api._check_rev,
+                                        event_rev = self._api._event_rev,
+                                        wait_update_counter = self._api._wait_update_counter)
                         await self._trade_objs_chan.send({k: v for k, v in order.trade_records[trade_id].items() if not k.startswith("_")})
+                        async_log.debug('await self._trade_objs_chan.send({k: v for k, v in order.trade_records[trade_id].items() if not k.startswith("_")})',
+                                        my_event="resume",
+                                        check_rev = self._api._check_rev,
+                                        event_rev = self._api._event_rev,
+                                        wait_update_counter = self._api._wait_update_counter)
+
                         all_trades_id.add(trade_id)
                 if order != last_order:
                     last_order = order.copy()
+
+                    async_log.debug('await self._order_chan.send({k: v for k, v in last_order.items() if not k.startswith("_")})',
+                                    my_event="await",
+                                    depends= [id(self._order_chan)],
+                                    check_rev = self._api._check_rev,
+                                    event_rev = self._api._event_rev,
+                                    wait_update_counter = self._api._wait_update_counter)
                     await self._order_chan.send({k: v for k, v in last_order.items() if not k.startswith("_")})
+                    async_log.debug('await self._order_chan.send({k: v for k, v in last_order.items() if not k.startswith("_")})',
+                                    my_event="resume",
+                                    check_rev = self._api._check_rev,
+                                    event_rev = self._api._event_rev,
+                                    wait_update_counter = self._api._wait_update_counter)
+            async_log.debug("with self._api.register_update_notify() __exit__",
+                            my_event="await",
+                            depends = [id(update_chan)],
+                            check_rev = self._api._check_rev,
+                            event_rev = self._api._event_rev,
+                            wait_update_counter = self._api._wait_update_counter)
+
+        async_log.debug("with self._api.register_update_notify() __exit__",
+                        my_event="resume",
+                        check_rev = self._api._check_rev,
+                        event_rev = self._api._event_rev,
+                        wait_update_counter = self._api._wait_update_counter)

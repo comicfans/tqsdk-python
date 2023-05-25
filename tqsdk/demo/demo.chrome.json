@@ -1,0 +1,3942 @@
+{
+    "displayTimeUnit": "ns",
+    "traceEvents": [
+        {
+            "args": {
+                "filename": "targetPosTwap.py",
+                "lineno": 174
+            },
+            "cat": "function",
+            "id": 0,
+            "name": "cancel all task",
+            "ph": "B",
+            "pid": "mainloop",
+            "tid": "mainloop",
+            "ts": 0.0
+        },
+        {
+            "args": {
+                "filename": "targetPosTwap.py",
+                "lineno": 188
+            },
+            "cat": "function",
+            "id": 1,
+            "ph": "E",
+            "pid": "mainloop",
+            "tid": "mainloop",
+            "ts": 2998.0
+        },
+        {
+            "args": {
+                "filename": "targetPosTwap.py",
+                "lineno": 195
+            },
+            "cat": "function",
+            "id": 2,
+            "name": "cancel_all_order",
+            "ph": "B",
+            "pid": "mainloop",
+            "tid": "mainloop",
+            "ts": 5997.0
+        },
+        {
+            "args": {
+                "filename": "targetPosTwap.py",
+                "lineno": 197
+            },
+            "cat": "function",
+            "id": 3,
+            "name": "cancel one order",
+            "ph": "B",
+            "pid": "mainloop",
+            "tid": "mainloop",
+            "ts": 6999.0
+        },
+        {
+            "args": {
+                "filename": "targetPosTwap.py",
+                "lineno": 205
+            },
+            "cat": "function",
+            "id": 4,
+            "ph": "E",
+            "pid": "mainloop",
+            "tid": "mainloop",
+            "ts": 145029.0
+        },
+        {
+            "args": {
+                "filename": "targetPosTwap.py",
+                "lineno": 197
+            },
+            "cat": "function",
+            "id": 5,
+            "name": "cancel one order",
+            "ph": "B",
+            "pid": "mainloop",
+            "tid": "mainloop",
+            "ts": 146032.0
+        },
+        {
+            "args": {
+                "filename": "targetPosTwap.py",
+                "lineno": 205
+            },
+            "cat": "function",
+            "id": 6,
+            "ph": "E",
+            "pid": "mainloop",
+            "tid": "mainloop",
+            "ts": 407103.0
+        },
+        {
+            "args": {
+                "filename": "targetPosTwap.py",
+                "lineno": 197
+            },
+            "cat": "function",
+            "id": 7,
+            "name": "cancel one order",
+            "ph": "B",
+            "pid": "mainloop",
+            "tid": "mainloop",
+            "ts": 408104.0
+        },
+        {
+            "args": {
+                "filename": "targetPosTwap.py",
+                "lineno": 205
+            },
+            "cat": "function",
+            "id": 8,
+            "ph": "E",
+            "pid": "mainloop",
+            "tid": "mainloop",
+            "ts": 666712.0
+        },
+        {
+            "args": {
+                "filename": "targetPosTwap.py",
+                "lineno": 197
+            },
+            "cat": "function",
+            "id": 9,
+            "name": "cancel one order",
+            "ph": "B",
+            "pid": "mainloop",
+            "tid": "mainloop",
+            "ts": 667713.0
+        },
+        {
+            "args": {
+                "filename": "targetPosTwap.py",
+                "lineno": 205
+            },
+            "cat": "function",
+            "id": 10,
+            "ph": "E",
+            "pid": "mainloop",
+            "tid": "mainloop",
+            "ts": 940944.0
+        },
+        {
+            "args": {
+                "filename": "targetPosTwap.py",
+                "lineno": 207
+            },
+            "cat": "function",
+            "id": 11,
+            "ph": "E",
+            "pid": "mainloop",
+            "tid": "mainloop",
+            "ts": 942946.0
+        },
+        {
+            "args": {
+                "filename": "targetPosTwap.py",
+                "lineno": 224
+            },
+            "cat": "function",
+            "id": 12,
+            "name": "get position",
+            "ph": "B",
+            "pid": "mainloop",
+            "tid": "mainloop",
+            "ts": 1984178.0
+        },
+        {
+            "args": {
+                "filename": "targetPosTwap.py",
+                "lineno": 226
+            },
+            "cat": "function",
+            "id": 13,
+            "ph": "E",
+            "pid": "mainloop",
+            "tid": "mainloop",
+            "ts": 1985179.0
+        },
+        {
+            "args": {
+                "filename": "targetPosTwap.py",
+                "lineno": 224
+            },
+            "cat": "function",
+            "id": 14,
+            "name": "get position",
+            "ph": "B",
+            "pid": "mainloop",
+            "tid": "mainloop",
+            "ts": 2012185.0
+        },
+        {
+            "args": {
+                "filename": "targetPosTwap.py",
+                "lineno": 226
+            },
+            "cat": "function",
+            "id": 15,
+            "ph": "E",
+            "pid": "mainloop",
+            "tid": "mainloop",
+            "ts": 2013186.0000000002
+        },
+        {
+            "args": {
+                "filename": "targetPosTwap.py",
+                "lineno": 238
+            },
+            "cat": "function",
+            "id": 16,
+            "name": "get position",
+            "ph": "B",
+            "pid": "mainloop",
+            "tid": "mainloop",
+            "ts": 2040211.0000000002
+        },
+        {
+            "args": {
+                "depends": [
+                    1888802853824
+                ],
+                "event_rev": 1035,
+                "filename": "target_pos_scheduler.py",
+                "lineno": 125,
+                "wait_update_counter": 36
+            },
+            "cat": "function",
+            "id": 17,
+            "name": "quote = await self._api.get_quote(self._symbol)",
+            "ph": "B",
+            "pid": "CFFEX.TF2309",
+            "tid": "TargetPosScheduler._run:1888802855488",
+            "ts": 2041208.9999999998
+        },
+        {
+            "args": {
+                "event_rev": 1035,
+                "filename": "target_pos_scheduler.py",
+                "lineno": 133,
+                "wait_update_counter": 36
+            },
+            "cat": "function",
+            "id": 18,
+            "ph": "E",
+            "pid": "CFFEX.TF2309",
+            "tid": "TargetPosScheduler._run:1888802855488",
+            "ts": 2042208.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888858516272
+                ],
+                "event_rev": 1037,
+                "filename": "target_pos_scheduler.py",
+                "lineno": 162,
+                "wait_update_counter": 36
+            },
+            "cat": "function",
+            "id": 19,
+            "name": "async for _ in self._api.register_update_notify(quote)",
+            "ph": "B",
+            "pid": "CFFEX.TF2309",
+            "tid": "TargetPosScheduler._run:1888802855488",
+            "ts": 2056195.0000000002
+        },
+        {
+            "args": {
+                "depends": [
+                    1888858513728
+                ],
+                "event_rev": 1037,
+                "filename": "target_pos_scheduler.py",
+                "lineno": 267,
+                "wait_update_counter": 36
+            },
+            "cat": "function",
+            "id": 20,
+            "name": "async for trade in self._trade_objs_chan",
+            "ph": "B",
+            "pid": "CFFEX.TF2309",
+            "tid": "TargetPosScheduler._trade_recv:1888802852992",
+            "ts": 2057195.9999999998
+        },
+        {
+            "args": {
+                "depends": [
+                    1888802854864
+                ],
+                "event_rev": 1038,
+                "filename": "target_pos_scheduler.py",
+                "lineno": 125,
+                "wait_update_counter": 36
+            },
+            "cat": "function",
+            "id": 21,
+            "name": "quote = await self._api.get_quote(self._symbol)",
+            "ph": "B",
+            "pid": "CFFEX.T2309",
+            "tid": "TargetPosScheduler._run:1888802855696",
+            "ts": 2058196.9999999998
+        },
+        {
+            "args": {
+                "event_rev": 1038,
+                "filename": "target_pos_scheduler.py",
+                "lineno": 133,
+                "wait_update_counter": 36
+            },
+            "cat": "function",
+            "id": 22,
+            "ph": "E",
+            "pid": "CFFEX.T2309",
+            "tid": "TargetPosScheduler._run:1888802855696",
+            "ts": 2059213.9999999998
+        },
+        {
+            "args": {
+                "depends": [
+                    1888858519584
+                ],
+                "event_rev": 1040,
+                "filename": "target_pos_scheduler.py",
+                "lineno": 162,
+                "wait_update_counter": 36
+            },
+            "cat": "function",
+            "id": 23,
+            "name": "async for _ in self._api.register_update_notify(quote)",
+            "ph": "B",
+            "pid": "CFFEX.T2309",
+            "tid": "TargetPosScheduler._run:1888802855696",
+            "ts": 2065216.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888858518432
+                ],
+                "event_rev": 1040,
+                "filename": "target_pos_scheduler.py",
+                "lineno": 267,
+                "wait_update_counter": 36
+            },
+            "cat": "function",
+            "id": 24,
+            "name": "async for trade in self._trade_objs_chan",
+            "ph": "B",
+            "pid": "CFFEX.T2309",
+            "tid": "TargetPosScheduler._trade_recv:1888802856528",
+            "ts": 2066218.9999999998
+        },
+        {
+            "args": {
+                "depends": [
+                    1888858510560
+                ],
+                "event_rev": 1045,
+                "filename": "target_pos_task.py",
+                "lineno": 406,
+                "wait_update_counter": 36
+            },
+            "cat": "function",
+            "id": 25,
+            "name": "self._quote = await self._api.get_quote(self._symbol)",
+            "ph": "B",
+            "pid": "CFFEX.TF2309",
+            "tid": "TargetPosTask._target_pos_task:1888802857152",
+            "ts": 2069219.0
+        },
+        {
+            "args": {
+                "event_rev": 1045,
+                "filename": "target_pos_task.py",
+                "lineno": 414,
+                "wait_update_counter": 36
+            },
+            "cat": "function",
+            "id": 26,
+            "ph": "E",
+            "pid": "CFFEX.TF2309",
+            "tid": "TargetPosTask._target_pos_task:1888802857152",
+            "ts": 2070220.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888858515552
+                ],
+                "event_rev": 1045,
+                "filename": "target_pos_task.py",
+                "lineno": 420,
+                "wait_update_counter": 36
+            },
+            "cat": "function",
+            "id": 27,
+            "name": "async for target_pos in self._pos_chan",
+            "ph": "B",
+            "pid": "CFFEX.TF2309",
+            "tid": "TargetPosTask._target_pos_task:1888802857152",
+            "ts": 2071199.0
+        },
+        {
+            "args": {
+                "event_rev": 1045,
+                "filename": "target_pos_task.py",
+                "lineno": 427,
+                "wait_update_counter": 36
+            },
+            "cat": "function",
+            "id": 28,
+            "ph": "E",
+            "pid": "CFFEX.TF2309",
+            "tid": "TargetPosTask._target_pos_task:1888802857152",
+            "ts": 2072218.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888802862768
+                ],
+                "event_rev": 1046,
+                "filename": "target_pos_task.py",
+                "lineno": 466,
+                "wait_update_counter": 36
+            },
+            "cat": "function",
+            "id": 29,
+            "name": "await gather(*[each._task for each in all_tasks])",
+            "ph": "B",
+            "pid": "CFFEX.TF2309",
+            "tid": "TargetPosTask._target_pos_task:1888802857152",
+            "ts": 2080201.0000000002
+        },
+        {
+            "args": {
+                "depends": [
+                    1888858510560
+                ],
+                "event_rev": 1047,
+                "filename": "target_pos_task.py",
+                "lineno": 347,
+                "wait_update_counter": 36
+            },
+            "cat": "function",
+            "id": 30,
+            "name": "self._quote = await self._api.get_quote(self._symbol)",
+            "ph": "B",
+            "pid": "CFFEX.TF2309",
+            "tid": "TargetPosTask._update_time_from_md:1888802857360",
+            "ts": 2081217.9999999998
+        },
+        {
+            "args": {
+                "event_rev": 1047,
+                "filename": "target_pos_task.py",
+                "lineno": 354,
+                "wait_update_counter": 36
+            },
+            "cat": "function",
+            "id": 31,
+            "ph": "E",
+            "pid": "CFFEX.TF2309",
+            "tid": "TargetPosTask._update_time_from_md:1888802857360",
+            "ts": 2082218.0000000002
+        },
+        {
+            "args": {
+                "depends": [
+                    1888858519872
+                ],
+                "event_rev": 1047,
+                "filename": "target_pos_task.py",
+                "lineno": 365,
+                "wait_update_counter": 36
+            },
+            "cat": "function",
+            "id": 32,
+            "name": "async for _ in chan",
+            "ph": "B",
+            "pid": "CFFEX.TF2309",
+            "tid": "TargetPosTask._update_time_from_md:1888802857360",
+            "ts": 2084219.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888858511808
+                ],
+                "event_rev": 1049,
+                "filename": "target_pos_task.py",
+                "lineno": 406,
+                "wait_update_counter": 36
+            },
+            "cat": "function",
+            "id": 33,
+            "name": "self._quote = await self._api.get_quote(self._symbol)",
+            "ph": "B",
+            "pid": "CFFEX.T2309",
+            "tid": "TargetPosTask._target_pos_task:1888802862144",
+            "ts": 2085219.0
+        },
+        {
+            "args": {
+                "event_rev": 1049,
+                "filename": "target_pos_task.py",
+                "lineno": 414,
+                "wait_update_counter": 36
+            },
+            "cat": "function",
+            "id": 34,
+            "ph": "E",
+            "pid": "CFFEX.T2309",
+            "tid": "TargetPosTask._target_pos_task:1888802862144",
+            "ts": 2086205.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888858514160
+                ],
+                "event_rev": 1049,
+                "filename": "target_pos_task.py",
+                "lineno": 420,
+                "wait_update_counter": 36
+            },
+            "cat": "function",
+            "id": 35,
+            "name": "async for target_pos in self._pos_chan",
+            "ph": "B",
+            "pid": "CFFEX.T2309",
+            "tid": "TargetPosTask._target_pos_task:1888802862144",
+            "ts": 2087224.0
+        },
+        {
+            "args": {
+                "event_rev": 1049,
+                "filename": "target_pos_task.py",
+                "lineno": 427,
+                "wait_update_counter": 36
+            },
+            "cat": "function",
+            "id": 36,
+            "ph": "E",
+            "pid": "CFFEX.T2309",
+            "tid": "TargetPosTask._target_pos_task:1888802862144",
+            "ts": 2088219.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888802863392
+                ],
+                "event_rev": 1050,
+                "filename": "target_pos_task.py",
+                "lineno": 466,
+                "wait_update_counter": 36
+            },
+            "cat": "function",
+            "id": 37,
+            "name": "await gather(*[each._task for each in all_tasks])",
+            "ph": "B",
+            "pid": "CFFEX.T2309",
+            "tid": "TargetPosTask._target_pos_task:1888802862144",
+            "ts": 2095203.9999999998
+        },
+        {
+            "args": {
+                "depends": [
+                    1888858511808
+                ],
+                "event_rev": 1051,
+                "filename": "target_pos_task.py",
+                "lineno": 347,
+                "wait_update_counter": 36
+            },
+            "cat": "function",
+            "id": 38,
+            "name": "self._quote = await self._api.get_quote(self._symbol)",
+            "ph": "B",
+            "pid": "CFFEX.T2309",
+            "tid": "TargetPosTask._update_time_from_md:1888802862352",
+            "ts": 2097229.0
+        },
+        {
+            "args": {
+                "event_rev": 1051,
+                "filename": "target_pos_task.py",
+                "lineno": 354,
+                "wait_update_counter": 36
+            },
+            "cat": "function",
+            "id": 39,
+            "ph": "E",
+            "pid": "CFFEX.T2309",
+            "tid": "TargetPosTask._update_time_from_md:1888802862352",
+            "ts": 2097229.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888858521216
+                ],
+                "event_rev": 1051,
+                "filename": "target_pos_task.py",
+                "lineno": 365,
+                "wait_update_counter": 36
+            },
+            "cat": "function",
+            "id": 40,
+            "name": "async for _ in chan",
+            "ph": "B",
+            "pid": "CFFEX.T2309",
+            "tid": "TargetPosTask._update_time_from_md:1888802862352",
+            "ts": 2099216.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888858510560
+                ],
+                "event_rev": 1055,
+                "filename": "target_pos_task.py",
+                "lineno": 629,
+                "wait_update_counter": 36
+            },
+            "cat": "function",
+            "id": 41,
+            "name": "self._quote = await self._api.get_quote(self._symbol)",
+            "ph": "B",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderUntilAllTradedTask._run:1888802862768",
+            "ts": 2100227.0
+        },
+        {
+            "args": {
+                "event_rev": 1055,
+                "filename": "target_pos_task.py",
+                "lineno": 636,
+                "wait_update_counter": 36
+            },
+            "cat": "function",
+            "id": 42,
+            "ph": "E",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderUntilAllTradedTask._run:1888802862768",
+            "ts": 2102222.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859540976
+                ],
+                "event_rev": 1056,
+                "filename": "target_pos_task.py",
+                "lineno": 654,
+                "wait_update_counter": 36
+            },
+            "cat": "function",
+            "id": 43,
+            "name": "order = await insert_order_task._order_chan.recv()",
+            "ph": "B",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderUntilAllTradedTask._run:1888802862768",
+            "ts": 2104209.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888858511808
+                ],
+                "event_rev": 1059,
+                "filename": "target_pos_task.py",
+                "lineno": 629,
+                "wait_update_counter": 36
+            },
+            "cat": "function",
+            "id": 44,
+            "name": "self._quote = await self._api.get_quote(self._symbol)",
+            "ph": "B",
+            "pid": "CFFEX.T2309",
+            "tid": "InsertOrderUntilAllTradedTask._run:1888802863392",
+            "ts": 2105223.0
+        },
+        {
+            "args": {
+                "event_rev": 1059,
+                "filename": "target_pos_task.py",
+                "lineno": 636,
+                "wait_update_counter": 36
+            },
+            "cat": "function",
+            "id": 45,
+            "ph": "E",
+            "pid": "CFFEX.T2309",
+            "tid": "InsertOrderUntilAllTradedTask._run:1888802863392",
+            "ts": 2106224.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859541744
+                ],
+                "event_rev": 1060,
+                "filename": "target_pos_task.py",
+                "lineno": 654,
+                "wait_update_counter": 36
+            },
+            "cat": "function",
+            "id": 46,
+            "name": "order = await insert_order_task._order_chan.recv()",
+            "ph": "B",
+            "pid": "CFFEX.T2309",
+            "tid": "InsertOrderUntilAllTradedTask._run:1888802863392",
+            "ts": 2108223.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859542512
+                ],
+                "event_rev": 1065,
+                "filename": "target_pos_task.py",
+                "lineno": 878,
+                "wait_update_counter": 36
+            },
+            "cat": "function",
+            "id": 47,
+            "name": "with self._api.register_update_notify() __enter__",
+            "ph": "B",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderTask._run:1888802864016",
+            "ts": 2110225.0
+        },
+        {
+            "args": {
+                "event_rev": 1065,
+                "filename": "target_pos_task.py",
+                "lineno": 885,
+                "wait_update_counter": 36
+            },
+            "cat": "function",
+            "id": 48,
+            "ph": "E",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderTask._run:1888802864016",
+            "ts": 2111230.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859540976
+                ],
+                "event_rev": 1065,
+                "filename": "target_pos_task.py",
+                "lineno": 891,
+                "wait_update_counter": 36
+            },
+            "cat": "function",
+            "id": 49,
+            "name": "await self._order_chan.send({k: v for k, v in last_order.items() if not k.startswith(\"_\")})",
+            "ph": "B",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderTask._run:1888802864016",
+            "ts": 2112224.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859540976
+                ],
+                "event_rev": 1066,
+                "filename": "target_pos_task.py",
+                "lineno": 898,
+                "wait_update_counter": 36
+            },
+            "cat": "function",
+            "id": 50,
+            "ph": "E",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderTask._run:1888802864016",
+            "ts": 2113209.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859542512
+                ],
+                "event_rev": 1066,
+                "filename": "target_pos_task.py",
+                "lineno": 908,
+                "wait_update_counter": 36
+            },
+            "cat": "function",
+            "id": 51,
+            "name": "await update_chan.recv()",
+            "ph": "B",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderTask._run:1888802864016",
+            "ts": 2114208.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859543328
+                ],
+                "event_rev": 1068,
+                "filename": "target_pos_task.py",
+                "lineno": 878,
+                "wait_update_counter": 36
+            },
+            "cat": "function",
+            "id": 52,
+            "name": "with self._api.register_update_notify() __enter__",
+            "ph": "B",
+            "pid": "CFFEX.T2309",
+            "tid": "InsertOrderTask._run:1888802864432",
+            "ts": 2116225.0
+        },
+        {
+            "args": {
+                "event_rev": 1068,
+                "filename": "target_pos_task.py",
+                "lineno": 885,
+                "wait_update_counter": 36
+            },
+            "cat": "function",
+            "id": 53,
+            "ph": "E",
+            "pid": "CFFEX.T2309",
+            "tid": "InsertOrderTask._run:1888802864432",
+            "ts": 2117225.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859541744
+                ],
+                "event_rev": 1068,
+                "filename": "target_pos_task.py",
+                "lineno": 891,
+                "wait_update_counter": 36
+            },
+            "cat": "function",
+            "id": 54,
+            "name": "await self._order_chan.send({k: v for k, v in last_order.items() if not k.startswith(\"_\")})",
+            "ph": "B",
+            "pid": "CFFEX.T2309",
+            "tid": "InsertOrderTask._run:1888802864432",
+            "ts": 2118225.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859541744
+                ],
+                "event_rev": 1069,
+                "filename": "target_pos_task.py",
+                "lineno": 898,
+                "wait_update_counter": 36
+            },
+            "cat": "function",
+            "id": 55,
+            "ph": "E",
+            "pid": "CFFEX.T2309",
+            "tid": "InsertOrderTask._run:1888802864432",
+            "ts": 2120231.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859543328
+                ],
+                "event_rev": 1069,
+                "filename": "target_pos_task.py",
+                "lineno": 908,
+                "wait_update_counter": 36
+            },
+            "cat": "function",
+            "id": 56,
+            "name": "await update_chan.recv()",
+            "ph": "B",
+            "pid": "CFFEX.T2309",
+            "tid": "InsertOrderTask._run:1888802864432",
+            "ts": 2121210.0
+        },
+        {
+            "args": {
+                "event_rev": 1073,
+                "filename": "target_pos_task.py",
+                "lineno": 662,
+                "wait_update_counter": 36
+            },
+            "cat": "function",
+            "id": 57,
+            "ph": "E",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderUntilAllTradedTask._run:1888802862768",
+            "ts": 2123227.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888802864016
+                ],
+                "event_rev": 1074,
+                "filename": "target_pos_task.py",
+                "lineno": 674,
+                "wait_update_counter": 36
+            },
+            "cat": "function",
+            "id": 58,
+            "name": "await asyncio.shield(insert_order_task._task)",
+            "ph": "B",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderUntilAllTradedTask._run:1888802862768",
+            "ts": 2124227.0
+        },
+        {
+            "args": {
+                "event_rev": 1075,
+                "filename": "target_pos_task.py",
+                "lineno": 662,
+                "wait_update_counter": 36
+            },
+            "cat": "function",
+            "id": 59,
+            "ph": "E",
+            "pid": "CFFEX.T2309",
+            "tid": "InsertOrderUntilAllTradedTask._run:1888802863392",
+            "ts": 2126233.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888802864432
+                ],
+                "event_rev": 1076,
+                "filename": "target_pos_task.py",
+                "lineno": 674,
+                "wait_update_counter": 36
+            },
+            "cat": "function",
+            "id": 60,
+            "name": "await asyncio.shield(insert_order_task._task)",
+            "ph": "B",
+            "pid": "CFFEX.T2309",
+            "tid": "InsertOrderUntilAllTradedTask._run:1888802863392",
+            "ts": 2127212.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859541504
+                ],
+                "event_rev": 1079,
+                "filename": "target_pos_task.py",
+                "lineno": 769,
+                "wait_update_counter": 36
+            },
+            "cat": "function",
+            "id": 61,
+            "name": "async with self._api.register_update_notify(chan=update_chan) __enter__",
+            "ph": "B",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderUntilAllTradedTask._check_price:1888859586624",
+            "ts": 2129212.0
+        },
+        {
+            "args": {
+                "event_rev": 1079,
+                "filename": "target_pos_task.py",
+                "lineno": 777,
+                "wait_update_counter": 36
+            },
+            "cat": "function",
+            "id": 62,
+            "ph": "E",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderUntilAllTradedTask._check_price:1888859586624",
+            "ts": 2130213.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859541504
+                ],
+                "event_rev": 1079,
+                "filename": "target_pos_task.py",
+                "lineno": 783,
+                "wait_update_counter": 36
+            },
+            "cat": "function",
+            "id": 63,
+            "name": "async for _ in update_chan",
+            "ph": "B",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderUntilAllTradedTask._check_price:1888859586624",
+            "ts": 2131229.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859542272
+                ],
+                "event_rev": 1079,
+                "filename": "target_pos_task.py",
+                "lineno": 769,
+                "wait_update_counter": 36
+            },
+            "cat": "function",
+            "id": 64,
+            "name": "async with self._api.register_update_notify(chan=update_chan) __enter__",
+            "ph": "B",
+            "pid": "CFFEX.T2309",
+            "tid": "InsertOrderUntilAllTradedTask._check_price:1888859586832",
+            "ts": 2132213.0
+        },
+        {
+            "args": {
+                "event_rev": 1079,
+                "filename": "target_pos_task.py",
+                "lineno": 777,
+                "wait_update_counter": 36
+            },
+            "cat": "function",
+            "id": 65,
+            "ph": "E",
+            "pid": "CFFEX.T2309",
+            "tid": "InsertOrderUntilAllTradedTask._check_price:1888859586832",
+            "ts": 2134213.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859542272
+                ],
+                "event_rev": 1079,
+                "filename": "target_pos_task.py",
+                "lineno": 783,
+                "wait_update_counter": 36
+            },
+            "cat": "function",
+            "id": 66,
+            "name": "async for _ in update_chan",
+            "ph": "B",
+            "pid": "CFFEX.T2309",
+            "tid": "InsertOrderUntilAllTradedTask._check_price:1888859586832",
+            "ts": 2135215.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859541504
+                ],
+                "event_rev": 1115,
+                "filename": "target_pos_task.py",
+                "lineno": 790,
+                "wait_update_counter": 37
+            },
+            "cat": "function",
+            "id": 67,
+            "ph": "E",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderUntilAllTradedTask._check_price:1888859586624",
+            "ts": 2155221.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859541504
+                ],
+                "event_rev": 1115,
+                "filename": "target_pos_task.py",
+                "lineno": 803,
+                "wait_update_counter": 37
+            },
+            "cat": "function",
+            "id": 68,
+            "name": "for _ in update_chan",
+            "ph": "B",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderUntilAllTradedTask._check_price:1888859586624",
+            "ts": 2156217.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859542272
+                ],
+                "event_rev": 1115,
+                "filename": "target_pos_task.py",
+                "lineno": 790,
+                "wait_update_counter": 37
+            },
+            "cat": "function",
+            "id": 69,
+            "ph": "E",
+            "pid": "CFFEX.T2309",
+            "tid": "InsertOrderUntilAllTradedTask._check_price:1888859586832",
+            "ts": 2157218.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859542272
+                ],
+                "event_rev": 1115,
+                "filename": "target_pos_task.py",
+                "lineno": 803,
+                "wait_update_counter": 37
+            },
+            "cat": "function",
+            "id": 70,
+            "name": "for _ in update_chan",
+            "ph": "B",
+            "pid": "CFFEX.T2309",
+            "tid": "InsertOrderUntilAllTradedTask._check_price:1888859586832",
+            "ts": 2158218.0
+        },
+        {
+            "args": {
+                "event_rev": 1115,
+                "filename": "target_pos_task.py",
+                "lineno": 915,
+                "wait_update_counter": 37
+            },
+            "cat": "function",
+            "id": 71,
+            "ph": "E",
+            "pid": "CFFEX.T2309",
+            "tid": "InsertOrderTask._run:1888802864432",
+            "ts": 2159222.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859543328
+                ],
+                "event_rev": 1115,
+                "filename": "target_pos_task.py",
+                "lineno": 908,
+                "wait_update_counter": 37
+            },
+            "cat": "function",
+            "id": 72,
+            "name": "await update_chan.recv()",
+            "ph": "B",
+            "pid": "CFFEX.T2309",
+            "tid": "InsertOrderTask._run:1888802864432",
+            "ts": 2163220.0
+        },
+        {
+            "args": {
+                "event_rev": 1115,
+                "filename": "target_pos_task.py",
+                "lineno": 915,
+                "wait_update_counter": 37
+            },
+            "cat": "function",
+            "id": 73,
+            "ph": "E",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderTask._run:1888802864016",
+            "ts": 2165220.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859542512
+                ],
+                "event_rev": 1115,
+                "filename": "target_pos_task.py",
+                "lineno": 908,
+                "wait_update_counter": 37
+            },
+            "cat": "function",
+            "id": 74,
+            "name": "await update_chan.recv()",
+            "ph": "B",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderTask._run:1888802864016",
+            "ts": 2169222.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859541504
+                ],
+                "event_rev": 1151,
+                "filename": "target_pos_task.py",
+                "lineno": 790,
+                "wait_update_counter": 38
+            },
+            "cat": "function",
+            "id": 75,
+            "ph": "E",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderUntilAllTradedTask._check_price:1888859586624",
+            "ts": 2225236.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859541504
+                ],
+                "event_rev": 1151,
+                "filename": "target_pos_task.py",
+                "lineno": 803,
+                "wait_update_counter": 38
+            },
+            "cat": "function",
+            "id": 76,
+            "name": "for _ in update_chan",
+            "ph": "B",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderUntilAllTradedTask._check_price:1888859586624",
+            "ts": 2226233.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859542272
+                ],
+                "event_rev": 1151,
+                "filename": "target_pos_task.py",
+                "lineno": 790,
+                "wait_update_counter": 38
+            },
+            "cat": "function",
+            "id": 77,
+            "ph": "E",
+            "pid": "CFFEX.T2309",
+            "tid": "InsertOrderUntilAllTradedTask._check_price:1888859586832",
+            "ts": 2227234.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859542272
+                ],
+                "event_rev": 1151,
+                "filename": "target_pos_task.py",
+                "lineno": 803,
+                "wait_update_counter": 38
+            },
+            "cat": "function",
+            "id": 78,
+            "name": "for _ in update_chan",
+            "ph": "B",
+            "pid": "CFFEX.T2309",
+            "tid": "InsertOrderUntilAllTradedTask._check_price:1888859586832",
+            "ts": 2228236.0
+        },
+        {
+            "args": {
+                "event_rev": 1151,
+                "filename": "target_pos_task.py",
+                "lineno": 915,
+                "wait_update_counter": 38
+            },
+            "cat": "function",
+            "id": 79,
+            "ph": "E",
+            "pid": "CFFEX.T2309",
+            "tid": "InsertOrderTask._run:1888802864432",
+            "ts": 2230237.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859543328
+                ],
+                "event_rev": 1151,
+                "filename": "target_pos_task.py",
+                "lineno": 908,
+                "wait_update_counter": 38
+            },
+            "cat": "function",
+            "id": 80,
+            "name": "await update_chan.recv()",
+            "ph": "B",
+            "pid": "CFFEX.T2309",
+            "tid": "InsertOrderTask._run:1888802864432",
+            "ts": 2234236.0
+        },
+        {
+            "args": {
+                "event_rev": 1151,
+                "filename": "target_pos_task.py",
+                "lineno": 915,
+                "wait_update_counter": 38
+            },
+            "cat": "function",
+            "id": 81,
+            "ph": "E",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderTask._run:1888802864016",
+            "ts": 2235239.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859542512
+                ],
+                "event_rev": 1151,
+                "filename": "target_pos_task.py",
+                "lineno": 908,
+                "wait_update_counter": 38
+            },
+            "cat": "function",
+            "id": 82,
+            "name": "await update_chan.recv()",
+            "ph": "B",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderTask._run:1888802864016",
+            "ts": 2238238.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859541504
+                ],
+                "event_rev": 1182,
+                "filename": "target_pos_task.py",
+                "lineno": 790,
+                "wait_update_counter": 39
+            },
+            "cat": "function",
+            "id": 83,
+            "ph": "E",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderUntilAllTradedTask._check_price:1888859586624",
+            "ts": 2245238.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859541504
+                ],
+                "event_rev": 1182,
+                "filename": "target_pos_task.py",
+                "lineno": 803,
+                "wait_update_counter": 39
+            },
+            "cat": "function",
+            "id": 84,
+            "name": "for _ in update_chan",
+            "ph": "B",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderUntilAllTradedTask._check_price:1888859586624",
+            "ts": 2247239.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859542272
+                ],
+                "event_rev": 1182,
+                "filename": "target_pos_task.py",
+                "lineno": 790,
+                "wait_update_counter": 39
+            },
+            "cat": "function",
+            "id": 85,
+            "ph": "E",
+            "pid": "CFFEX.T2309",
+            "tid": "InsertOrderUntilAllTradedTask._check_price:1888859586832",
+            "ts": 2248239.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859542272
+                ],
+                "event_rev": 1182,
+                "filename": "target_pos_task.py",
+                "lineno": 803,
+                "wait_update_counter": 39
+            },
+            "cat": "function",
+            "id": 86,
+            "name": "for _ in update_chan",
+            "ph": "B",
+            "pid": "CFFEX.T2309",
+            "tid": "InsertOrderUntilAllTradedTask._check_price:1888859586832",
+            "ts": 2249239.0
+        },
+        {
+            "args": {
+                "event_rev": 1182,
+                "filename": "target_pos_task.py",
+                "lineno": 915,
+                "wait_update_counter": 39
+            },
+            "cat": "function",
+            "id": 87,
+            "ph": "E",
+            "pid": "CFFEX.T2309",
+            "tid": "InsertOrderTask._run:1888802864432",
+            "ts": 2251240.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859543328
+                ],
+                "event_rev": 1182,
+                "filename": "target_pos_task.py",
+                "lineno": 908,
+                "wait_update_counter": 39
+            },
+            "cat": "function",
+            "id": 88,
+            "name": "await update_chan.recv()",
+            "ph": "B",
+            "pid": "CFFEX.T2309",
+            "tid": "InsertOrderTask._run:1888802864432",
+            "ts": 2254240.0
+        },
+        {
+            "args": {
+                "event_rev": 1182,
+                "filename": "target_pos_task.py",
+                "lineno": 915,
+                "wait_update_counter": 39
+            },
+            "cat": "function",
+            "id": 89,
+            "ph": "E",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderTask._run:1888802864016",
+            "ts": 2256240.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859542512
+                ],
+                "event_rev": 1182,
+                "filename": "target_pos_task.py",
+                "lineno": 908,
+                "wait_update_counter": 39
+            },
+            "cat": "function",
+            "id": 90,
+            "name": "await update_chan.recv()",
+            "ph": "B",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderTask._run:1888802864016",
+            "ts": 2259240.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859541504
+                ],
+                "event_rev": 1203,
+                "filename": "target_pos_task.py",
+                "lineno": 790,
+                "wait_update_counter": 40
+            },
+            "cat": "function",
+            "id": 91,
+            "ph": "E",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderUntilAllTradedTask._check_price:1888859586624",
+            "ts": 2264245.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859541504
+                ],
+                "event_rev": 1203,
+                "filename": "target_pos_task.py",
+                "lineno": 803,
+                "wait_update_counter": 40
+            },
+            "cat": "function",
+            "id": 92,
+            "name": "for _ in update_chan",
+            "ph": "B",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderUntilAllTradedTask._check_price:1888859586624",
+            "ts": 2266243.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859542272
+                ],
+                "event_rev": 1203,
+                "filename": "target_pos_task.py",
+                "lineno": 790,
+                "wait_update_counter": 40
+            },
+            "cat": "function",
+            "id": 93,
+            "ph": "E",
+            "pid": "CFFEX.T2309",
+            "tid": "InsertOrderUntilAllTradedTask._check_price:1888859586832",
+            "ts": 2267245.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859542272
+                ],
+                "event_rev": 1203,
+                "filename": "target_pos_task.py",
+                "lineno": 803,
+                "wait_update_counter": 40
+            },
+            "cat": "function",
+            "id": 94,
+            "name": "for _ in update_chan",
+            "ph": "B",
+            "pid": "CFFEX.T2309",
+            "tid": "InsertOrderUntilAllTradedTask._check_price:1888859586832",
+            "ts": 2268244.0
+        },
+        {
+            "args": {
+                "event_rev": 1203,
+                "filename": "target_pos_task.py",
+                "lineno": 915,
+                "wait_update_counter": 40
+            },
+            "cat": "function",
+            "id": 95,
+            "ph": "E",
+            "pid": "CFFEX.T2309",
+            "tid": "InsertOrderTask._run:1888802864432",
+            "ts": 2270245.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859543328
+                ],
+                "event_rev": 1203,
+                "filename": "target_pos_task.py",
+                "lineno": 908,
+                "wait_update_counter": 40
+            },
+            "cat": "function",
+            "id": 96,
+            "name": "await update_chan.recv()",
+            "ph": "B",
+            "pid": "CFFEX.T2309",
+            "tid": "InsertOrderTask._run:1888802864432",
+            "ts": 2273244.0
+        },
+        {
+            "args": {
+                "event_rev": 1203,
+                "filename": "target_pos_task.py",
+                "lineno": 915,
+                "wait_update_counter": 40
+            },
+            "cat": "function",
+            "id": 97,
+            "ph": "E",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderTask._run:1888802864016",
+            "ts": 2275244.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859542512
+                ],
+                "event_rev": 1203,
+                "filename": "target_pos_task.py",
+                "lineno": 908,
+                "wait_update_counter": 40
+            },
+            "cat": "function",
+            "id": 98,
+            "name": "await update_chan.recv()",
+            "ph": "B",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderTask._run:1888802864016",
+            "ts": 2278245.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859541504
+                ],
+                "event_rev": 1228,
+                "filename": "target_pos_task.py",
+                "lineno": 790,
+                "wait_update_counter": 41
+            },
+            "cat": "function",
+            "id": 99,
+            "ph": "E",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderUntilAllTradedTask._check_price:1888859586624",
+            "ts": 2293898.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859541504
+                ],
+                "event_rev": 1228,
+                "filename": "target_pos_task.py",
+                "lineno": 803,
+                "wait_update_counter": 41
+            },
+            "cat": "function",
+            "id": 100,
+            "name": "for _ in update_chan",
+            "ph": "B",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderUntilAllTradedTask._check_price:1888859586624",
+            "ts": 2294833.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859542272
+                ],
+                "event_rev": 1228,
+                "filename": "target_pos_task.py",
+                "lineno": 790,
+                "wait_update_counter": 41
+            },
+            "cat": "function",
+            "id": 101,
+            "ph": "E",
+            "pid": "CFFEX.T2309",
+            "tid": "InsertOrderUntilAllTradedTask._check_price:1888859586832",
+            "ts": 2295833.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859542272
+                ],
+                "event_rev": 1228,
+                "filename": "target_pos_task.py",
+                "lineno": 803,
+                "wait_update_counter": 41
+            },
+            "cat": "function",
+            "id": 102,
+            "name": "for _ in update_chan",
+            "ph": "B",
+            "pid": "CFFEX.T2309",
+            "tid": "InsertOrderUntilAllTradedTask._check_price:1888859586832",
+            "ts": 2297834.0
+        },
+        {
+            "args": {
+                "event_rev": 1228,
+                "filename": "target_pos_task.py",
+                "lineno": 915,
+                "wait_update_counter": 41
+            },
+            "cat": "function",
+            "id": 103,
+            "ph": "E",
+            "pid": "CFFEX.T2309",
+            "tid": "InsertOrderTask._run:1888802864432",
+            "ts": 2298837.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888858518432
+                ],
+                "event_rev": 1228,
+                "filename": "target_pos_task.py",
+                "lineno": 941,
+                "wait_update_counter": 41
+            },
+            "cat": "function",
+            "id": 104,
+            "name": "await self._trade_objs_chan.send({k: v for k, v in order.trade_records[trade_id].items() if not k.startswith(\"_\")})",
+            "ph": "B",
+            "pid": "CFFEX.T2309",
+            "tid": "InsertOrderTask._run:1888802864432",
+            "ts": 2301834.0
+        },
+        {
+            "args": {
+                "event_rev": 1229,
+                "filename": "target_pos_task.py",
+                "lineno": 948,
+                "wait_update_counter": 41
+            },
+            "cat": "function",
+            "id": 105,
+            "ph": "E",
+            "pid": "CFFEX.T2309",
+            "tid": "InsertOrderTask._run:1888802864432",
+            "ts": 2304835.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859541744
+                ],
+                "event_rev": 1229,
+                "filename": "target_pos_task.py",
+                "lineno": 958,
+                "wait_update_counter": 41
+            },
+            "cat": "function",
+            "id": 106,
+            "name": "await self._order_chan.send({k: v for k, v in last_order.items() if not k.startswith(\"_\")})",
+            "ph": "B",
+            "pid": "CFFEX.T2309",
+            "tid": "InsertOrderTask._run:1888802864432",
+            "ts": 2305835.0
+        },
+        {
+            "args": {
+                "event_rev": 1229,
+                "filename": "target_pos_task.py",
+                "lineno": 965,
+                "wait_update_counter": 41
+            },
+            "cat": "function",
+            "id": 107,
+            "ph": "E",
+            "pid": "CFFEX.T2309",
+            "tid": "InsertOrderTask._run:1888802864432",
+            "ts": 2306836.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859543328
+                ],
+                "event_rev": 1229,
+                "filename": "target_pos_task.py",
+                "lineno": 970,
+                "wait_update_counter": 41
+            },
+            "cat": "function",
+            "id": 108,
+            "name": "with self._api.register_update_notify() __exit__",
+            "ph": "B",
+            "pid": "CFFEX.T2309",
+            "tid": "InsertOrderTask._run:1888802864432",
+            "ts": 2310838.0
+        },
+        {
+            "args": {
+                "event_rev": 1229,
+                "filename": "target_pos_task.py",
+                "lineno": 977,
+                "wait_update_counter": 41
+            },
+            "cat": "function",
+            "id": 109,
+            "ph": "E",
+            "pid": "CFFEX.T2309",
+            "tid": "InsertOrderTask._run:1888802864432",
+            "ts": 2311841.0
+        },
+        {
+            "args": {
+                "event_rev": 1230,
+                "filename": "target_pos_task.py",
+                "lineno": 915,
+                "wait_update_counter": 41
+            },
+            "cat": "function",
+            "id": 110,
+            "ph": "E",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderTask._run:1888802864016",
+            "ts": 2312840.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859540976
+                ],
+                "event_rev": 1230,
+                "filename": "target_pos_task.py",
+                "lineno": 958,
+                "wait_update_counter": 41
+            },
+            "cat": "function",
+            "id": 111,
+            "name": "await self._order_chan.send({k: v for k, v in last_order.items() if not k.startswith(\"_\")})",
+            "ph": "B",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderTask._run:1888802864016",
+            "ts": 2315839.0
+        },
+        {
+            "args": {
+                "event_rev": 1230,
+                "filename": "target_pos_task.py",
+                "lineno": 965,
+                "wait_update_counter": 41
+            },
+            "cat": "function",
+            "id": 112,
+            "ph": "E",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderTask._run:1888802864016",
+            "ts": 2316840.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859542512
+                ],
+                "event_rev": 1230,
+                "filename": "target_pos_task.py",
+                "lineno": 908,
+                "wait_update_counter": 41
+            },
+            "cat": "function",
+            "id": 113,
+            "name": "await update_chan.recv()",
+            "ph": "B",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderTask._run:1888802864016",
+            "ts": 2317846.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888858518432
+                ],
+                "event_rev": 1231,
+                "filename": "target_pos_scheduler.py",
+                "lineno": 275,
+                "wait_update_counter": 41
+            },
+            "cat": "function",
+            "id": 114,
+            "ph": "E",
+            "pid": "CFFEX.T2309",
+            "tid": "TargetPosScheduler._trade_recv:1888802856528",
+            "ts": 2319838.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888858518432
+                ],
+                "event_rev": 1231,
+                "filename": "target_pos_scheduler.py",
+                "lineno": 283,
+                "wait_update_counter": 41
+            },
+            "cat": "function",
+            "id": 115,
+            "name": "async for trade in self._trade_objs_chan",
+            "ph": "B",
+            "pid": "CFFEX.T2309",
+            "tid": "TargetPosScheduler._trade_recv:1888802856528",
+            "ts": 2322838.0
+        },
+        {
+            "args": {
+                "event_rev": 1235,
+                "filename": "target_pos_task.py",
+                "lineno": 682,
+                "wait_update_counter": 41
+            },
+            "cat": "function",
+            "id": 116,
+            "ph": "E",
+            "pid": "CFFEX.T2309",
+            "tid": "InsertOrderUntilAllTradedTask._run:1888802863392",
+            "ts": 2323841.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859542272
+                ],
+                "event_rev": 1235,
+                "filename": "target_pos_task.py",
+                "lineno": 698,
+                "wait_update_counter": 41
+            },
+            "cat": "function",
+            "id": 117,
+            "name": "await check_chan.close()",
+            "ph": "B",
+            "pid": "CFFEX.T2309",
+            "tid": "InsertOrderUntilAllTradedTask._run:1888802863392",
+            "ts": 2324841.0
+        },
+        {
+            "args": {
+                "event_rev": 1236,
+                "filename": "target_pos_task.py",
+                "lineno": 705,
+                "wait_update_counter": 41
+            },
+            "cat": "function",
+            "id": 118,
+            "ph": "E",
+            "pid": "CFFEX.T2309",
+            "tid": "InsertOrderUntilAllTradedTask._run:1888802863392",
+            "ts": 2325841.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859586832
+                ],
+                "event_rev": 1236,
+                "filename": "target_pos_task.py",
+                "lineno": 711,
+                "wait_update_counter": 41
+            },
+            "cat": "function",
+            "id": 119,
+            "name": "await check_task",
+            "ph": "B",
+            "pid": "CFFEX.T2309",
+            "tid": "InsertOrderUntilAllTradedTask._run:1888802863392",
+            "ts": 2326840.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859542272
+                ],
+                "event_rev": 1238,
+                "filename": "target_pos_task.py",
+                "lineno": 809,
+                "wait_update_counter": 41
+            },
+            "cat": "function",
+            "id": 120,
+            "name": "async with self._api.register_update_notify(chan=update_chan) __exit__",
+            "ph": "B",
+            "pid": "CFFEX.T2309",
+            "tid": "InsertOrderUntilAllTradedTask._check_price:1888859586832",
+            "ts": 2328840.0
+        },
+        {
+            "args": {
+                "event_rev": 1238,
+                "filename": "target_pos_task.py",
+                "lineno": 816,
+                "wait_update_counter": 41
+            },
+            "cat": "function",
+            "id": 121,
+            "ph": "E",
+            "pid": "CFFEX.T2309",
+            "tid": "InsertOrderUntilAllTradedTask._check_price:1888859586832",
+            "ts": 2328840.0
+        },
+        {
+            "args": {
+                "event_rev": 1241,
+                "filename": "target_pos_task.py",
+                "lineno": 719,
+                "wait_update_counter": 41
+            },
+            "cat": "function",
+            "id": 122,
+            "ph": "E",
+            "pid": "CFFEX.T2309",
+            "tid": "InsertOrderUntilAllTradedTask._run:1888802863392",
+            "ts": 2330842.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888802864432
+                ],
+                "event_rev": 1241,
+                "filename": "target_pos_task.py",
+                "lineno": 728,
+                "wait_update_counter": 41
+            },
+            "cat": "function",
+            "id": 123,
+            "name": "await asyncio.wait_for(insert_order_task._task, timeout=30)",
+            "ph": "B",
+            "pid": "CFFEX.T2309",
+            "tid": "InsertOrderUntilAllTradedTask._run:1888802863392",
+            "ts": 2331843.0
+        },
+        {
+            "args": {
+                "event_rev": 1245,
+                "filename": "target_pos_task.py",
+                "lineno": 736,
+                "wait_update_counter": 41
+            },
+            "cat": "function",
+            "id": 124,
+            "ph": "E",
+            "pid": "CFFEX.T2309",
+            "tid": "InsertOrderUntilAllTradedTask._run:1888802863392",
+            "ts": 2333843.0
+        },
+        {
+            "args": {
+                "event_rev": 1249,
+                "filename": "target_pos_task.py",
+                "lineno": 473,
+                "wait_update_counter": 41
+            },
+            "cat": "function",
+            "id": 125,
+            "ph": "E",
+            "pid": "CFFEX.T2309",
+            "tid": "TargetPosTask._target_pos_task:1888802862144",
+            "ts": 2335847.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859541504
+                ],
+                "event_rev": 1276,
+                "filename": "target_pos_task.py",
+                "lineno": 790,
+                "wait_update_counter": 42
+            },
+            "cat": "function",
+            "id": 126,
+            "ph": "E",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderUntilAllTradedTask._check_price:1888859586624",
+            "ts": 2340845.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859541504
+                ],
+                "event_rev": 1276,
+                "filename": "target_pos_task.py",
+                "lineno": 803,
+                "wait_update_counter": 42
+            },
+            "cat": "function",
+            "id": 127,
+            "name": "for _ in update_chan",
+            "ph": "B",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderUntilAllTradedTask._check_price:1888859586624",
+            "ts": 2341844.0
+        },
+        {
+            "args": {
+                "event_rev": 1276,
+                "filename": "target_pos_task.py",
+                "lineno": 915,
+                "wait_update_counter": 42
+            },
+            "cat": "function",
+            "id": 128,
+            "ph": "E",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderTask._run:1888802864016",
+            "ts": 2342844.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859542512
+                ],
+                "event_rev": 1276,
+                "filename": "target_pos_task.py",
+                "lineno": 908,
+                "wait_update_counter": 42
+            },
+            "cat": "function",
+            "id": 129,
+            "name": "await update_chan.recv()",
+            "ph": "B",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderTask._run:1888802864016",
+            "ts": 2346846.0
+        },
+        {
+            "args": {
+                "event_rev": 1306,
+                "filename": "target_pos_task.py",
+                "lineno": 373,
+                "wait_update_counter": 43
+            },
+            "cat": "function",
+            "id": 130,
+            "ph": "E",
+            "pid": "CFFEX.T2309",
+            "tid": "TargetPosTask._update_time_from_md:1888802862352",
+            "ts": 2408859.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888858521216
+                ],
+                "event_rev": 1306,
+                "filename": "target_pos_task.py",
+                "lineno": 380,
+                "wait_update_counter": 43
+            },
+            "cat": "function",
+            "id": 131,
+            "name": "async for _ in chan",
+            "ph": "B",
+            "pid": "CFFEX.T2309",
+            "tid": "TargetPosTask._update_time_from_md:1888802862352",
+            "ts": 2410875.0
+        },
+        {
+            "args": {
+                "event_rev": 1306,
+                "filename": "target_pos_scheduler.py",
+                "lineno": 169,
+                "wait_update_counter": 43
+            },
+            "cat": "function",
+            "id": 132,
+            "ph": "E",
+            "pid": "CFFEX.T2309",
+            "tid": "TargetPosScheduler._run:1888802855696",
+            "ts": 2411875.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859541504
+                ],
+                "event_rev": 1306,
+                "filename": "target_pos_task.py",
+                "lineno": 790,
+                "wait_update_counter": 43
+            },
+            "cat": "function",
+            "id": 133,
+            "ph": "E",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderUntilAllTradedTask._check_price:1888859586624",
+            "ts": 2413876.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859541504
+                ],
+                "event_rev": 1306,
+                "filename": "target_pos_task.py",
+                "lineno": 803,
+                "wait_update_counter": 43
+            },
+            "cat": "function",
+            "id": 134,
+            "name": "for _ in update_chan",
+            "ph": "B",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderUntilAllTradedTask._check_price:1888859586624",
+            "ts": 2414876.0
+        },
+        {
+            "args": {
+                "event_rev": 1306,
+                "filename": "target_pos_task.py",
+                "lineno": 915,
+                "wait_update_counter": 43
+            },
+            "cat": "function",
+            "id": 135,
+            "ph": "E",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderTask._run:1888802864016",
+            "ts": 2415876.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859542512
+                ],
+                "event_rev": 1306,
+                "filename": "target_pos_task.py",
+                "lineno": 908,
+                "wait_update_counter": 43
+            },
+            "cat": "function",
+            "id": 136,
+            "name": "await update_chan.recv()",
+            "ph": "B",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderTask._run:1888802864016",
+            "ts": 2418860.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859541504
+                ],
+                "event_rev": 1336,
+                "filename": "target_pos_task.py",
+                "lineno": 790,
+                "wait_update_counter": 44
+            },
+            "cat": "function",
+            "id": 137,
+            "ph": "E",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderUntilAllTradedTask._check_price:1888859586624",
+            "ts": 2492320.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859541504
+                ],
+                "event_rev": 1336,
+                "filename": "target_pos_task.py",
+                "lineno": 803,
+                "wait_update_counter": 44
+            },
+            "cat": "function",
+            "id": 138,
+            "name": "for _ in update_chan",
+            "ph": "B",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderUntilAllTradedTask._check_price:1888859586624",
+            "ts": 2494320.0
+        },
+        {
+            "args": {
+                "event_rev": 1337,
+                "filename": "target_pos_task.py",
+                "lineno": 915,
+                "wait_update_counter": 44
+            },
+            "cat": "function",
+            "id": 139,
+            "ph": "E",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderTask._run:1888802864016",
+            "ts": 2495321.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859542512
+                ],
+                "event_rev": 1337,
+                "filename": "target_pos_task.py",
+                "lineno": 908,
+                "wait_update_counter": 44
+            },
+            "cat": "function",
+            "id": 140,
+            "name": "await update_chan.recv()",
+            "ph": "B",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderTask._run:1888802864016",
+            "ts": 2498320.0
+        },
+        {
+            "args": {
+                "filename": "targetPosTwap.py",
+                "lineno": 240
+            },
+            "cat": "function",
+            "id": 141,
+            "ph": "E",
+            "pid": "mainloop",
+            "tid": "mainloop",
+            "ts": 2500320.0
+        },
+        {
+            "args": {
+                "filename": "targetPosTwap.py",
+                "lineno": 238
+            },
+            "cat": "function",
+            "id": 142,
+            "name": "get position",
+            "ph": "B",
+            "pid": "mainloop",
+            "tid": "mainloop",
+            "ts": 2501321.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859541504
+                ],
+                "event_rev": 1379,
+                "filename": "target_pos_task.py",
+                "lineno": 790,
+                "wait_update_counter": 46
+            },
+            "cat": "function",
+            "id": 143,
+            "ph": "E",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderUntilAllTradedTask._check_price:1888859586624",
+            "ts": 2595357.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859541504
+                ],
+                "event_rev": 1379,
+                "filename": "target_pos_task.py",
+                "lineno": 803,
+                "wait_update_counter": 46
+            },
+            "cat": "function",
+            "id": 144,
+            "name": "for _ in update_chan",
+            "ph": "B",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderUntilAllTradedTask._check_price:1888859586624",
+            "ts": 2596358.0
+        },
+        {
+            "args": {
+                "event_rev": 1379,
+                "filename": "target_pos_task.py",
+                "lineno": 915,
+                "wait_update_counter": 46
+            },
+            "cat": "function",
+            "id": 145,
+            "ph": "E",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderTask._run:1888802864016",
+            "ts": 2597358.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859542512
+                ],
+                "event_rev": 1379,
+                "filename": "target_pos_task.py",
+                "lineno": 908,
+                "wait_update_counter": 46
+            },
+            "cat": "function",
+            "id": 146,
+            "name": "await update_chan.recv()",
+            "ph": "B",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderTask._run:1888802864016",
+            "ts": 2600358.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859541504
+                ],
+                "event_rev": 1407,
+                "filename": "target_pos_task.py",
+                "lineno": 790,
+                "wait_update_counter": 47
+            },
+            "cat": "function",
+            "id": 147,
+            "ph": "E",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderUntilAllTradedTask._check_price:1888859586624",
+            "ts": 2648356.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859541504
+                ],
+                "event_rev": 1407,
+                "filename": "target_pos_task.py",
+                "lineno": 803,
+                "wait_update_counter": 47
+            },
+            "cat": "function",
+            "id": 148,
+            "name": "for _ in update_chan",
+            "ph": "B",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderUntilAllTradedTask._check_price:1888859586624",
+            "ts": 2649355.0
+        },
+        {
+            "args": {
+                "event_rev": 1408,
+                "filename": "target_pos_task.py",
+                "lineno": 915,
+                "wait_update_counter": 47
+            },
+            "cat": "function",
+            "id": 149,
+            "ph": "E",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderTask._run:1888802864016",
+            "ts": 2650356.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859542512
+                ],
+                "event_rev": 1408,
+                "filename": "target_pos_task.py",
+                "lineno": 908,
+                "wait_update_counter": 47
+            },
+            "cat": "function",
+            "id": 150,
+            "name": "await update_chan.recv()",
+            "ph": "B",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderTask._run:1888802864016",
+            "ts": 2652355.0
+        },
+        {
+            "args": {
+                "filename": "targetPosTwap.py",
+                "lineno": 240
+            },
+            "cat": "function",
+            "id": 151,
+            "ph": "E",
+            "pid": "mainloop",
+            "tid": "mainloop",
+            "ts": 2654371.0
+        },
+        {
+            "args": {
+                "filename": "targetPosTwap.py",
+                "lineno": 238
+            },
+            "cat": "function",
+            "id": 152,
+            "name": "get position",
+            "ph": "B",
+            "pid": "mainloop",
+            "tid": "mainloop",
+            "ts": 2674375.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888802863600
+                ],
+                "event_rev": 1415,
+                "filename": "target_pos_scheduler.py",
+                "lineno": 125,
+                "wait_update_counter": 48
+            },
+            "cat": "function",
+            "id": 153,
+            "name": "quote = await self._api.get_quote(self._symbol)",
+            "ph": "B",
+            "pid": "CFFEX.TS2309",
+            "tid": "TargetPosScheduler._run:1888802856736",
+            "ts": 2675359.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888858515504
+                ],
+                "event_rev": 1415,
+                "filename": "target_pos_scheduler.py",
+                "lineno": 267,
+                "wait_update_counter": 48
+            },
+            "cat": "function",
+            "id": 154,
+            "name": "async for trade in self._trade_objs_chan",
+            "ph": "B",
+            "pid": "CFFEX.TS2309",
+            "tid": "TargetPosScheduler._trade_recv:1888802864432",
+            "ts": 2676382.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859541504
+                ],
+                "event_rev": 1454,
+                "filename": "target_pos_task.py",
+                "lineno": 790,
+                "wait_update_counter": 49
+            },
+            "cat": "function",
+            "id": 155,
+            "ph": "E",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderUntilAllTradedTask._check_price:1888859586624",
+            "ts": 2716370.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859541504
+                ],
+                "event_rev": 1454,
+                "filename": "target_pos_task.py",
+                "lineno": 803,
+                "wait_update_counter": 49
+            },
+            "cat": "function",
+            "id": 156,
+            "name": "for _ in update_chan",
+            "ph": "B",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderUntilAllTradedTask._check_price:1888859586624",
+            "ts": 2717368.0
+        },
+        {
+            "args": {
+                "event_rev": 1454,
+                "filename": "target_pos_task.py",
+                "lineno": 915,
+                "wait_update_counter": 49
+            },
+            "cat": "function",
+            "id": 157,
+            "ph": "E",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderTask._run:1888802864016",
+            "ts": 2718369.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859542512
+                ],
+                "event_rev": 1454,
+                "filename": "target_pos_task.py",
+                "lineno": 908,
+                "wait_update_counter": 49
+            },
+            "cat": "function",
+            "id": 158,
+            "name": "await update_chan.recv()",
+            "ph": "B",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderTask._run:1888802864016",
+            "ts": 2721369.0
+        },
+        {
+            "args": {
+                "event_rev": 1482,
+                "filename": "target_pos_task.py",
+                "lineno": 373,
+                "wait_update_counter": 50
+            },
+            "cat": "function",
+            "id": 159,
+            "ph": "E",
+            "pid": "CFFEX.T2309",
+            "tid": "TargetPosTask._update_time_from_md:1888802862352",
+            "ts": 2829395.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888858521216
+                ],
+                "event_rev": 1482,
+                "filename": "target_pos_task.py",
+                "lineno": 380,
+                "wait_update_counter": 50
+            },
+            "cat": "function",
+            "id": 160,
+            "name": "async for _ in chan",
+            "ph": "B",
+            "pid": "CFFEX.T2309",
+            "tid": "TargetPosTask._update_time_from_md:1888802862352",
+            "ts": 2830395.0
+        },
+        {
+            "args": {
+                "event_rev": 1482,
+                "filename": "target_pos_scheduler.py",
+                "lineno": 169,
+                "wait_update_counter": 50
+            },
+            "cat": "function",
+            "id": 161,
+            "ph": "E",
+            "pid": "CFFEX.T2309",
+            "tid": "TargetPosScheduler._run:1888802855696",
+            "ts": 2831395.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859541504
+                ],
+                "event_rev": 1482,
+                "filename": "target_pos_task.py",
+                "lineno": 790,
+                "wait_update_counter": 50
+            },
+            "cat": "function",
+            "id": 162,
+            "ph": "E",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderUntilAllTradedTask._check_price:1888859586624",
+            "ts": 2832394.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859541504
+                ],
+                "event_rev": 1482,
+                "filename": "target_pos_task.py",
+                "lineno": 803,
+                "wait_update_counter": 50
+            },
+            "cat": "function",
+            "id": 163,
+            "name": "for _ in update_chan",
+            "ph": "B",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderUntilAllTradedTask._check_price:1888859586624",
+            "ts": 2833394.0
+        },
+        {
+            "args": {
+                "event_rev": 1482,
+                "filename": "target_pos_task.py",
+                "lineno": 915,
+                "wait_update_counter": 50
+            },
+            "cat": "function",
+            "id": 164,
+            "ph": "E",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderTask._run:1888802864016",
+            "ts": 2834398.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859542512
+                ],
+                "event_rev": 1482,
+                "filename": "target_pos_task.py",
+                "lineno": 908,
+                "wait_update_counter": 50
+            },
+            "cat": "function",
+            "id": 165,
+            "name": "await update_chan.recv()",
+            "ph": "B",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderTask._run:1888802864016",
+            "ts": 2838395.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859541504
+                ],
+                "event_rev": 1509,
+                "filename": "target_pos_task.py",
+                "lineno": 790,
+                "wait_update_counter": 51
+            },
+            "cat": "function",
+            "id": 166,
+            "ph": "E",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderUntilAllTradedTask._check_price:1888859586624",
+            "ts": 2848401.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859541504
+                ],
+                "event_rev": 1509,
+                "filename": "target_pos_task.py",
+                "lineno": 803,
+                "wait_update_counter": 51
+            },
+            "cat": "function",
+            "id": 167,
+            "name": "for _ in update_chan",
+            "ph": "B",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderUntilAllTradedTask._check_price:1888859586624",
+            "ts": 2850400.0
+        },
+        {
+            "args": {
+                "event_rev": 1509,
+                "filename": "target_pos_task.py",
+                "lineno": 915,
+                "wait_update_counter": 51
+            },
+            "cat": "function",
+            "id": 168,
+            "ph": "E",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderTask._run:1888802864016",
+            "ts": 2851402.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859542512
+                ],
+                "event_rev": 1509,
+                "filename": "target_pos_task.py",
+                "lineno": 908,
+                "wait_update_counter": 51
+            },
+            "cat": "function",
+            "id": 169,
+            "name": "await update_chan.recv()",
+            "ph": "B",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderTask._run:1888802864016",
+            "ts": 2854416.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859541504
+                ],
+                "event_rev": 1537,
+                "filename": "target_pos_task.py",
+                "lineno": 790,
+                "wait_update_counter": 52
+            },
+            "cat": "function",
+            "id": 170,
+            "ph": "E",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderUntilAllTradedTask._check_price:1888859586624",
+            "ts": 2920430.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859541504
+                ],
+                "event_rev": 1537,
+                "filename": "target_pos_task.py",
+                "lineno": 803,
+                "wait_update_counter": 52
+            },
+            "cat": "function",
+            "id": 171,
+            "name": "for _ in update_chan",
+            "ph": "B",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderUntilAllTradedTask._check_price:1888859586624",
+            "ts": 2921415.0
+        },
+        {
+            "args": {
+                "event_rev": 1538,
+                "filename": "target_pos_task.py",
+                "lineno": 915,
+                "wait_update_counter": 52
+            },
+            "cat": "function",
+            "id": 172,
+            "ph": "E",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderTask._run:1888802864016",
+            "ts": 2922414.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859542512
+                ],
+                "event_rev": 1538,
+                "filename": "target_pos_task.py",
+                "lineno": 908,
+                "wait_update_counter": 52
+            },
+            "cat": "function",
+            "id": 173,
+            "name": "await update_chan.recv()",
+            "ph": "B",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderTask._run:1888802864016",
+            "ts": 2924431.0
+        },
+        {
+            "args": {
+                "filename": "targetPosTwap.py",
+                "lineno": 240
+            },
+            "cat": "function",
+            "id": 174,
+            "ph": "E",
+            "pid": "mainloop",
+            "tid": "mainloop",
+            "ts": 2926432.0
+        },
+        {
+            "args": {
+                "filename": "targetPosTwap.py",
+                "lineno": 238
+            },
+            "cat": "function",
+            "id": 175,
+            "name": "get position",
+            "ph": "B",
+            "pid": "mainloop",
+            "tid": "mainloop",
+            "ts": 2945421.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888802864848
+                ],
+                "event_rev": 1545,
+                "filename": "target_pos_scheduler.py",
+                "lineno": 125,
+                "wait_update_counter": 53
+            },
+            "cat": "function",
+            "id": 176,
+            "name": "quote = await self._api.get_quote(self._symbol)",
+            "ph": "B",
+            "pid": "DCE.jm2309",
+            "tid": "TargetPosScheduler._run:1888802863808",
+            "ts": 2946419.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859548320
+                ],
+                "event_rev": 1545,
+                "filename": "target_pos_scheduler.py",
+                "lineno": 267,
+                "wait_update_counter": 53
+            },
+            "cat": "function",
+            "id": 177,
+            "name": "async for trade in self._trade_objs_chan",
+            "ph": "B",
+            "pid": "DCE.jm2309",
+            "tid": "TargetPosScheduler._trade_recv:1888802863184",
+            "ts": 2947424.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859541504
+                ],
+                "event_rev": 1592,
+                "filename": "target_pos_task.py",
+                "lineno": 790,
+                "wait_update_counter": 54
+            },
+            "cat": "function",
+            "id": 178,
+            "ph": "E",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderUntilAllTradedTask._check_price:1888859586624",
+            "ts": 3079454.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859541504
+                ],
+                "event_rev": 1592,
+                "filename": "target_pos_task.py",
+                "lineno": 803,
+                "wait_update_counter": 54
+            },
+            "cat": "function",
+            "id": 179,
+            "name": "for _ in update_chan",
+            "ph": "B",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderUntilAllTradedTask._check_price:1888859586624",
+            "ts": 3080453.0
+        },
+        {
+            "args": {
+                "event_rev": 1592,
+                "filename": "target_pos_task.py",
+                "lineno": 915,
+                "wait_update_counter": 54
+            },
+            "cat": "function",
+            "id": 180,
+            "ph": "E",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderTask._run:1888802864016",
+            "ts": 3081454.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859542512
+                ],
+                "event_rev": 1592,
+                "filename": "target_pos_task.py",
+                "lineno": 908,
+                "wait_update_counter": 54
+            },
+            "cat": "function",
+            "id": 181,
+            "name": "await update_chan.recv()",
+            "ph": "B",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderTask._run:1888802864016",
+            "ts": 3084452.0
+        },
+        {
+            "args": {
+                "event_rev": 1593,
+                "filename": "target_pos_scheduler.py",
+                "lineno": 133,
+                "wait_update_counter": 54
+            },
+            "cat": "function",
+            "id": 182,
+            "ph": "E",
+            "pid": "CFFEX.TS2309",
+            "tid": "TargetPosScheduler._run:1888802856736",
+            "ts": 3085454.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859543616
+                ],
+                "event_rev": 1595,
+                "filename": "target_pos_scheduler.py",
+                "lineno": 162,
+                "wait_update_counter": 54
+            },
+            "cat": "function",
+            "id": 183,
+            "name": "async for _ in self._api.register_update_notify(quote)",
+            "ph": "B",
+            "pid": "CFFEX.TS2309",
+            "tid": "TargetPosScheduler._run:1888802856736",
+            "ts": 3092455.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859542080
+                ],
+                "event_rev": 1597,
+                "filename": "target_pos_task.py",
+                "lineno": 406,
+                "wait_update_counter": 54
+            },
+            "cat": "function",
+            "id": 184,
+            "name": "self._quote = await self._api.get_quote(self._symbol)",
+            "ph": "B",
+            "pid": "CFFEX.TS2309",
+            "tid": "TargetPosTask._target_pos_task:1888802864640",
+            "ts": 3093455.0
+        },
+        {
+            "args": {
+                "event_rev": 1597,
+                "filename": "target_pos_task.py",
+                "lineno": 414,
+                "wait_update_counter": 54
+            },
+            "cat": "function",
+            "id": 185,
+            "ph": "E",
+            "pid": "CFFEX.TS2309",
+            "tid": "TargetPosTask._target_pos_task:1888802864640",
+            "ts": 3094457.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859545440
+                ],
+                "event_rev": 1597,
+                "filename": "target_pos_task.py",
+                "lineno": 420,
+                "wait_update_counter": 54
+            },
+            "cat": "function",
+            "id": 186,
+            "name": "async for target_pos in self._pos_chan",
+            "ph": "B",
+            "pid": "CFFEX.TS2309",
+            "tid": "TargetPosTask._target_pos_task:1888802864640",
+            "ts": 3095456.0
+        },
+        {
+            "args": {
+                "event_rev": 1597,
+                "filename": "target_pos_task.py",
+                "lineno": 427,
+                "wait_update_counter": 54
+            },
+            "cat": "function",
+            "id": 187,
+            "ph": "E",
+            "pid": "CFFEX.TS2309",
+            "tid": "TargetPosTask._target_pos_task:1888802864640",
+            "ts": 3096453.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859587248
+                ],
+                "event_rev": 1598,
+                "filename": "target_pos_task.py",
+                "lineno": 466,
+                "wait_update_counter": 54
+            },
+            "cat": "function",
+            "id": 188,
+            "name": "await gather(*[each._task for each in all_tasks])",
+            "ph": "B",
+            "pid": "CFFEX.TS2309",
+            "tid": "TargetPosTask._target_pos_task:1888802864640",
+            "ts": 3105455.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859542080
+                ],
+                "event_rev": 1599,
+                "filename": "target_pos_task.py",
+                "lineno": 347,
+                "wait_update_counter": 54
+            },
+            "cat": "function",
+            "id": 189,
+            "name": "self._quote = await self._api.get_quote(self._symbol)",
+            "ph": "B",
+            "pid": "CFFEX.TS2309",
+            "tid": "TargetPosTask._update_time_from_md:1888859586832",
+            "ts": 3107457.0
+        },
+        {
+            "args": {
+                "event_rev": 1599,
+                "filename": "target_pos_task.py",
+                "lineno": 354,
+                "wait_update_counter": 54
+            },
+            "cat": "function",
+            "id": 190,
+            "ph": "E",
+            "pid": "CFFEX.TS2309",
+            "tid": "TargetPosTask._update_time_from_md:1888859586832",
+            "ts": 3108457.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859547408
+                ],
+                "event_rev": 1599,
+                "filename": "target_pos_task.py",
+                "lineno": 365,
+                "wait_update_counter": 54
+            },
+            "cat": "function",
+            "id": 191,
+            "name": "async for _ in chan",
+            "ph": "B",
+            "pid": "CFFEX.TS2309",
+            "tid": "TargetPosTask._update_time_from_md:1888859586832",
+            "ts": 3109459.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859542080
+                ],
+                "event_rev": 1602,
+                "filename": "target_pos_task.py",
+                "lineno": 629,
+                "wait_update_counter": 54
+            },
+            "cat": "function",
+            "id": 192,
+            "name": "self._quote = await self._api.get_quote(self._symbol)",
+            "ph": "B",
+            "pid": "CFFEX.TS2309",
+            "tid": "InsertOrderUntilAllTradedTask._run:1888859587248",
+            "ts": 3111457.0
+        },
+        {
+            "args": {
+                "event_rev": 1602,
+                "filename": "target_pos_task.py",
+                "lineno": 636,
+                "wait_update_counter": 54
+            },
+            "cat": "function",
+            "id": 193,
+            "ph": "E",
+            "pid": "CFFEX.TS2309",
+            "tid": "InsertOrderUntilAllTradedTask._run:1888859587248",
+            "ts": 3111457.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859701312
+                ],
+                "event_rev": 1603,
+                "filename": "target_pos_task.py",
+                "lineno": 654,
+                "wait_update_counter": 54
+            },
+            "cat": "function",
+            "id": 194,
+            "name": "order = await insert_order_task._order_chan.recv()",
+            "ph": "B",
+            "pid": "CFFEX.TS2309",
+            "tid": "InsertOrderUntilAllTradedTask._run:1888859587248",
+            "ts": 3114457.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859702224
+                ],
+                "event_rev": 1608,
+                "filename": "target_pos_task.py",
+                "lineno": 878,
+                "wait_update_counter": 54
+            },
+            "cat": "function",
+            "id": 195,
+            "name": "with self._api.register_update_notify() __enter__",
+            "ph": "B",
+            "pid": "CFFEX.TS2309",
+            "tid": "InsertOrderTask._run:1888859587872",
+            "ts": 3116460.0
+        },
+        {
+            "args": {
+                "event_rev": 1608,
+                "filename": "target_pos_task.py",
+                "lineno": 885,
+                "wait_update_counter": 54
+            },
+            "cat": "function",
+            "id": 196,
+            "ph": "E",
+            "pid": "CFFEX.TS2309",
+            "tid": "InsertOrderTask._run:1888859587872",
+            "ts": 3117459.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859701312
+                ],
+                "event_rev": 1608,
+                "filename": "target_pos_task.py",
+                "lineno": 891,
+                "wait_update_counter": 54
+            },
+            "cat": "function",
+            "id": 197,
+            "name": "await self._order_chan.send({k: v for k, v in last_order.items() if not k.startswith(\"_\")})",
+            "ph": "B",
+            "pid": "CFFEX.TS2309",
+            "tid": "InsertOrderTask._run:1888859587872",
+            "ts": 3118460.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859701312
+                ],
+                "event_rev": 1609,
+                "filename": "target_pos_task.py",
+                "lineno": 898,
+                "wait_update_counter": 54
+            },
+            "cat": "function",
+            "id": 198,
+            "ph": "E",
+            "pid": "CFFEX.TS2309",
+            "tid": "InsertOrderTask._run:1888859587872",
+            "ts": 3119459.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859702224
+                ],
+                "event_rev": 1609,
+                "filename": "target_pos_task.py",
+                "lineno": 908,
+                "wait_update_counter": 54
+            },
+            "cat": "function",
+            "id": 199,
+            "name": "await update_chan.recv()",
+            "ph": "B",
+            "pid": "CFFEX.TS2309",
+            "tid": "InsertOrderTask._run:1888859587872",
+            "ts": 3120459.0
+        },
+        {
+            "args": {
+                "event_rev": 1612,
+                "filename": "target_pos_task.py",
+                "lineno": 662,
+                "wait_update_counter": 54
+            },
+            "cat": "function",
+            "id": 200,
+            "ph": "E",
+            "pid": "CFFEX.TS2309",
+            "tid": "InsertOrderUntilAllTradedTask._run:1888859587248",
+            "ts": 3122461.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859587872
+                ],
+                "event_rev": 1613,
+                "filename": "target_pos_task.py",
+                "lineno": 674,
+                "wait_update_counter": 54
+            },
+            "cat": "function",
+            "id": 201,
+            "name": "await asyncio.shield(insert_order_task._task)",
+            "ph": "B",
+            "pid": "CFFEX.TS2309",
+            "tid": "InsertOrderUntilAllTradedTask._run:1888859587248",
+            "ts": 3123461.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859553504
+                ],
+                "event_rev": 1615,
+                "filename": "target_pos_task.py",
+                "lineno": 769,
+                "wait_update_counter": 54
+            },
+            "cat": "function",
+            "id": 202,
+            "name": "async with self._api.register_update_notify(chan=update_chan) __enter__",
+            "ph": "B",
+            "pid": "CFFEX.TS2309",
+            "tid": "InsertOrderUntilAllTradedTask._check_price:1888859588288",
+            "ts": 3125461.0
+        },
+        {
+            "args": {
+                "event_rev": 1615,
+                "filename": "target_pos_task.py",
+                "lineno": 777,
+                "wait_update_counter": 54
+            },
+            "cat": "function",
+            "id": 203,
+            "ph": "E",
+            "pid": "CFFEX.TS2309",
+            "tid": "InsertOrderUntilAllTradedTask._check_price:1888859588288",
+            "ts": 3126462.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859553504
+                ],
+                "event_rev": 1615,
+                "filename": "target_pos_task.py",
+                "lineno": 783,
+                "wait_update_counter": 54
+            },
+            "cat": "function",
+            "id": 204,
+            "name": "async for _ in update_chan",
+            "ph": "B",
+            "pid": "CFFEX.TS2309",
+            "tid": "InsertOrderUntilAllTradedTask._check_price:1888859588288",
+            "ts": 3127461.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859541504
+                ],
+                "event_rev": 1654,
+                "filename": "target_pos_task.py",
+                "lineno": 790,
+                "wait_update_counter": 55
+            },
+            "cat": "function",
+            "id": 205,
+            "ph": "E",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderUntilAllTradedTask._check_price:1888859586624",
+            "ts": 3194493.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859541504
+                ],
+                "event_rev": 1654,
+                "filename": "target_pos_task.py",
+                "lineno": 803,
+                "wait_update_counter": 55
+            },
+            "cat": "function",
+            "id": 206,
+            "name": "for _ in update_chan",
+            "ph": "B",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderUntilAllTradedTask._check_price:1888859586624",
+            "ts": 3195477.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859553504
+                ],
+                "event_rev": 1654,
+                "filename": "target_pos_task.py",
+                "lineno": 790,
+                "wait_update_counter": 55
+            },
+            "cat": "function",
+            "id": 207,
+            "ph": "E",
+            "pid": "CFFEX.TS2309",
+            "tid": "InsertOrderUntilAllTradedTask._check_price:1888859588288",
+            "ts": 3196476.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859553504
+                ],
+                "event_rev": 1654,
+                "filename": "target_pos_task.py",
+                "lineno": 803,
+                "wait_update_counter": 55
+            },
+            "cat": "function",
+            "id": 208,
+            "name": "for _ in update_chan",
+            "ph": "B",
+            "pid": "CFFEX.TS2309",
+            "tid": "InsertOrderUntilAllTradedTask._check_price:1888859588288",
+            "ts": 3198480.0
+        },
+        {
+            "args": {
+                "event_rev": 1655,
+                "filename": "target_pos_task.py",
+                "lineno": 915,
+                "wait_update_counter": 55
+            },
+            "cat": "function",
+            "id": 209,
+            "ph": "E",
+            "pid": "CFFEX.TS2309",
+            "tid": "InsertOrderTask._run:1888859587872",
+            "ts": 3199476.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859702224
+                ],
+                "event_rev": 1655,
+                "filename": "target_pos_task.py",
+                "lineno": 908,
+                "wait_update_counter": 55
+            },
+            "cat": "function",
+            "id": 210,
+            "name": "await update_chan.recv()",
+            "ph": "B",
+            "pid": "CFFEX.TS2309",
+            "tid": "InsertOrderTask._run:1888859587872",
+            "ts": 3202479.0
+        },
+        {
+            "args": {
+                "event_rev": 1655,
+                "filename": "target_pos_task.py",
+                "lineno": 915,
+                "wait_update_counter": 55
+            },
+            "cat": "function",
+            "id": 211,
+            "ph": "E",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderTask._run:1888802864016",
+            "ts": 3203479.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859542512
+                ],
+                "event_rev": 1655,
+                "filename": "target_pos_task.py",
+                "lineno": 908,
+                "wait_update_counter": 55
+            },
+            "cat": "function",
+            "id": 212,
+            "name": "await update_chan.recv()",
+            "ph": "B",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderTask._run:1888802864016",
+            "ts": 3206478.0
+        },
+        {
+            "args": {
+                "filename": "targetPosTwap.py",
+                "lineno": 240
+            },
+            "cat": "function",
+            "id": 213,
+            "ph": "E",
+            "pid": "mainloop",
+            "tid": "mainloop",
+            "ts": 3209481.0
+        },
+        {
+            "args": {
+                "filename": "targetPosTwap.py",
+                "lineno": 238
+            },
+            "cat": "function",
+            "id": 214,
+            "name": "get position",
+            "ph": "B",
+            "pid": "mainloop",
+            "tid": "mainloop",
+            "ts": 3231485.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859588080
+                ],
+                "event_rev": 1667,
+                "filename": "target_pos_scheduler.py",
+                "lineno": 125,
+                "wait_update_counter": 56
+            },
+            "cat": "function",
+            "id": 215,
+            "name": "quote = await self._api.get_quote(self._symbol)",
+            "ph": "B",
+            "pid": "INE.nr2308",
+            "tid": "TargetPosScheduler._run:1888802862976",
+            "ts": 3232484.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859544864
+                ],
+                "event_rev": 1667,
+                "filename": "target_pos_scheduler.py",
+                "lineno": 267,
+                "wait_update_counter": 56
+            },
+            "cat": "function",
+            "id": 216,
+            "name": "async for trade in self._trade_objs_chan",
+            "ph": "B",
+            "pid": "INE.nr2308",
+            "tid": "TargetPosScheduler._trade_recv:1888859587664",
+            "ts": 3234486.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859541504
+                ],
+                "event_rev": 1721,
+                "filename": "target_pos_task.py",
+                "lineno": 790,
+                "wait_update_counter": 57
+            },
+            "cat": "function",
+            "id": 217,
+            "ph": "E",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderUntilAllTradedTask._check_price:1888859586624",
+            "ts": 3250490.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859541504
+                ],
+                "event_rev": 1721,
+                "filename": "target_pos_task.py",
+                "lineno": 803,
+                "wait_update_counter": 57
+            },
+            "cat": "function",
+            "id": 218,
+            "name": "for _ in update_chan",
+            "ph": "B",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderUntilAllTradedTask._check_price:1888859586624",
+            "ts": 3251489.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859553504
+                ],
+                "event_rev": 1721,
+                "filename": "target_pos_task.py",
+                "lineno": 790,
+                "wait_update_counter": 57
+            },
+            "cat": "function",
+            "id": 219,
+            "ph": "E",
+            "pid": "CFFEX.TS2309",
+            "tid": "InsertOrderUntilAllTradedTask._check_price:1888859588288",
+            "ts": 3252490.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859553504
+                ],
+                "event_rev": 1721,
+                "filename": "target_pos_task.py",
+                "lineno": 803,
+                "wait_update_counter": 57
+            },
+            "cat": "function",
+            "id": 220,
+            "name": "for _ in update_chan",
+            "ph": "B",
+            "pid": "CFFEX.TS2309",
+            "tid": "InsertOrderUntilAllTradedTask._check_price:1888859588288",
+            "ts": 3253490.0
+        },
+        {
+            "args": {
+                "event_rev": 1721,
+                "filename": "target_pos_task.py",
+                "lineno": 915,
+                "wait_update_counter": 57
+            },
+            "cat": "function",
+            "id": 221,
+            "ph": "E",
+            "pid": "CFFEX.TS2309",
+            "tid": "InsertOrderTask._run:1888859587872",
+            "ts": 3254490.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859701312
+                ],
+                "event_rev": 1721,
+                "filename": "target_pos_task.py",
+                "lineno": 958,
+                "wait_update_counter": 57
+            },
+            "cat": "function",
+            "id": 222,
+            "name": "await self._order_chan.send({k: v for k, v in last_order.items() if not k.startswith(\"_\")})",
+            "ph": "B",
+            "pid": "CFFEX.TS2309",
+            "tid": "InsertOrderTask._run:1888859587872",
+            "ts": 3258490.0
+        },
+        {
+            "args": {
+                "event_rev": 1721,
+                "filename": "target_pos_task.py",
+                "lineno": 965,
+                "wait_update_counter": 57
+            },
+            "cat": "function",
+            "id": 223,
+            "ph": "E",
+            "pid": "CFFEX.TS2309",
+            "tid": "InsertOrderTask._run:1888859587872",
+            "ts": 3259493.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859702224
+                ],
+                "event_rev": 1721,
+                "filename": "target_pos_task.py",
+                "lineno": 908,
+                "wait_update_counter": 57
+            },
+            "cat": "function",
+            "id": 224,
+            "name": "await update_chan.recv()",
+            "ph": "B",
+            "pid": "CFFEX.TS2309",
+            "tid": "InsertOrderTask._run:1888859587872",
+            "ts": 3260490.0
+        },
+        {
+            "args": {
+                "event_rev": 1721,
+                "filename": "target_pos_task.py",
+                "lineno": 915,
+                "wait_update_counter": 57
+            },
+            "cat": "function",
+            "id": 225,
+            "ph": "E",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderTask._run:1888802864016",
+            "ts": 3261491.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859542512
+                ],
+                "event_rev": 1721,
+                "filename": "target_pos_task.py",
+                "lineno": 908,
+                "wait_update_counter": 57
+            },
+            "cat": "function",
+            "id": 226,
+            "name": "await update_chan.recv()",
+            "ph": "B",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderTask._run:1888802864016",
+            "ts": 3265493.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859541504
+                ],
+                "event_rev": 1742,
+                "filename": "target_pos_task.py",
+                "lineno": 790,
+                "wait_update_counter": 58
+            },
+            "cat": "function",
+            "id": 227,
+            "ph": "E",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderUntilAllTradedTask._check_price:1888859586624",
+            "ts": 3270493.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859541504
+                ],
+                "event_rev": 1742,
+                "filename": "target_pos_task.py",
+                "lineno": 803,
+                "wait_update_counter": 58
+            },
+            "cat": "function",
+            "id": 228,
+            "name": "for _ in update_chan",
+            "ph": "B",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderUntilAllTradedTask._check_price:1888859586624",
+            "ts": 3271495.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859553504
+                ],
+                "event_rev": 1742,
+                "filename": "target_pos_task.py",
+                "lineno": 790,
+                "wait_update_counter": 58
+            },
+            "cat": "function",
+            "id": 229,
+            "ph": "E",
+            "pid": "CFFEX.TS2309",
+            "tid": "InsertOrderUntilAllTradedTask._check_price:1888859588288",
+            "ts": 3272496.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859553504
+                ],
+                "event_rev": 1742,
+                "filename": "target_pos_task.py",
+                "lineno": 803,
+                "wait_update_counter": 58
+            },
+            "cat": "function",
+            "id": 230,
+            "name": "for _ in update_chan",
+            "ph": "B",
+            "pid": "CFFEX.TS2309",
+            "tid": "InsertOrderUntilAllTradedTask._check_price:1888859588288",
+            "ts": 3274495.0
+        },
+        {
+            "args": {
+                "event_rev": 1742,
+                "filename": "target_pos_task.py",
+                "lineno": 915,
+                "wait_update_counter": 58
+            },
+            "cat": "function",
+            "id": 231,
+            "ph": "E",
+            "pid": "CFFEX.TS2309",
+            "tid": "InsertOrderTask._run:1888859587872",
+            "ts": 3275496.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859702224
+                ],
+                "event_rev": 1742,
+                "filename": "target_pos_task.py",
+                "lineno": 908,
+                "wait_update_counter": 58
+            },
+            "cat": "function",
+            "id": 232,
+            "name": "await update_chan.recv()",
+            "ph": "B",
+            "pid": "CFFEX.TS2309",
+            "tid": "InsertOrderTask._run:1888859587872",
+            "ts": 3278494.0
+        },
+        {
+            "args": {
+                "event_rev": 1742,
+                "filename": "target_pos_task.py",
+                "lineno": 915,
+                "wait_update_counter": 58
+            },
+            "cat": "function",
+            "id": 233,
+            "ph": "E",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderTask._run:1888802864016",
+            "ts": 3280495.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859542512
+                ],
+                "event_rev": 1742,
+                "filename": "target_pos_task.py",
+                "lineno": 908,
+                "wait_update_counter": 58
+            },
+            "cat": "function",
+            "id": 234,
+            "name": "await update_chan.recv()",
+            "ph": "B",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderTask._run:1888802864016",
+            "ts": 3283499.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859541504
+                ],
+                "event_rev": 1767,
+                "filename": "target_pos_task.py",
+                "lineno": 790,
+                "wait_update_counter": 59
+            },
+            "cat": "function",
+            "id": 235,
+            "ph": "E",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderUntilAllTradedTask._check_price:1888859586624",
+            "ts": 3358534.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859541504
+                ],
+                "event_rev": 1767,
+                "filename": "target_pos_task.py",
+                "lineno": 803,
+                "wait_update_counter": 59
+            },
+            "cat": "function",
+            "id": 236,
+            "name": "for _ in update_chan",
+            "ph": "B",
+            "pid": "CFFEX.TF2309",
+            "tid": "InsertOrderUntilAllTradedTask._check_price:1888859586624",
+            "ts": 3359534.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859553504
+                ],
+                "event_rev": 1767,
+                "filename": "target_pos_task.py",
+                "lineno": 790,
+                "wait_update_counter": 59
+            },
+            "cat": "function",
+            "id": 237,
+            "ph": "E",
+            "pid": "CFFEX.TS2309",
+            "tid": "InsertOrderUntilAllTradedTask._check_price:1888859588288",
+            "ts": 3360529.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859553504
+                ],
+                "event_rev": 1767,
+                "filename": "target_pos_task.py",
+                "lineno": 803,
+                "wait_update_counter": 59
+            },
+            "cat": "function",
+            "id": 238,
+            "name": "for _ in update_chan",
+            "ph": "B",
+            "pid": "CFFEX.TS2309",
+            "tid": "InsertOrderUntilAllTradedTask._check_price:1888859588288",
+            "ts": 3362529.0
+        },
+        {
+            "args": {
+                "event_rev": 1767,
+                "filename": "target_pos_task.py",
+                "lineno": 915,
+                "wait_update_counter": 59
+            },
+            "cat": "function",
+            "id": 239,
+            "ph": "E",
+            "pid": "CFFEX.TS2309",
+            "tid": "InsertOrderTask._run:1888859587872",
+            "ts": 3363530.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859701312
+                ],
+                "event_rev": 1767,
+                "filename": "target_pos_task.py",
+                "lineno": 958,
+                "wait_update_counter": 59
+            },
+            "cat": "function",
+            "id": 240,
+            "name": "await self._order_chan.send({k: v for k, v in last_order.items() if not k.startswith(\"_\")})",
+            "ph": "B",
+            "pid": "CFFEX.TS2309",
+            "tid": "InsertOrderTask._run:1888859587872",
+            "ts": 3367532.0
+        },
+        {
+            "args": {
+                "event_rev": 1767,
+                "filename": "target_pos_task.py",
+                "lineno": 965,
+                "wait_update_counter": 59
+            },
+            "cat": "function",
+            "id": 241,
+            "ph": "E",
+            "pid": "CFFEX.TS2309",
+            "tid": "InsertOrderTask._run:1888859587872",
+            "ts": 3368514.0
+        },
+        {
+            "args": {
+                "depends": [
+                    1888859702224
+                ],
+                "event_rev": 1767,
+                "filename": "target_pos_task.py",
+                "lineno": 908,
+                "wait_update_counter": 59
+            },
+            "cat": "function",
+            "id": 242,
+            "name": "await update_chan.recv()",
+            "ph": "B",
+            "pid": "CFFEX.TS2309",
+            "tid": "InsertOrderTask._run:1888859587872",
+            "ts": 3369515.0
+        }
+    ]
+}

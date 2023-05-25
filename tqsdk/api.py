@@ -204,6 +204,7 @@ class TqApi(TqBaseApi):
         self._logger = logging.getLogger("TqApi")
         self._logger.setLevel(logging.DEBUG)
         self.disable_print = disable_print
+        self._wait_update_counter = 0
 
         # 创建一个新的 ioloop, 避免和其他框架/环境产生干扰
         super(TqApi, self).__init__(loop=loop)
@@ -1864,6 +1865,7 @@ class TqApi(TqBaseApi):
 
             可能输出 ""(空字符串), 表示还没有收到该合约的行情
         """
+        self._wait_update_counter = self._wait_update_counter + 1
         if self._loop.is_running():
             raise Exception("不能在协程中调用 wait_update, 如需在协程中等待业务数据更新请使用 register_update_notify")
         elif asyncio._get_running_loop():
