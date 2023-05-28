@@ -105,11 +105,11 @@ class TargetPosScheduler(object):
 
         self._trade_objs_chan = trade_objs_chan if trade_objs_chan else TqChan(self._api)
         self._time_table = _check_time_table(time_table)
-        self._task = self._api.create_task(self._run())
+        self._task = self._api.create_task(self._wrap_run())
 
         self._trade_keys = list(Trade(None).keys())
         self.trades_df = DataFrame(columns=self._trade_keys)  # 所有的 trade 列表
-        self._trade_recv_task = self._api.create_task(self._trade_recv())
+        self._trade_recv_task = self._api.create_task(self._wrap_trade_recv())
         self._log = structlog.get_logger(clazz = "TargetPosScheduler",
                                          id = id(self),
                                          symbol =symbol,
@@ -118,8 +118,23 @@ class TargetPosScheduler(object):
                                               self._trade_objs_chan,
                                               self._task]])
 
+    async def _wrap_run(self):
+        async_log = self._log.bind(current_task = id(asyncio.current_task(self._api._loop)))
+        async_log.debug("_run", depends = [], my_event = "await", 
+                        check_rev = self._api._check_rev,
+                        event_rev = self._api._event_rev,
+                        wait_update_counter = self._api._wait_update_counter)
+        try:
+            await self._run()
+        finally:
+            async_log.debug("_run", my_event = 'resume',
+                            check_rev = self._api._check_rev,
+                            event_rev = self._api._event_rev,
+                            wait_update_counter = self._api._wait_update_counter)
+
     async def _run(self):
         async_log = self._log.bind(current_task = id(asyncio.current_task(self._api._loop)))
+
         """负责调整目标持仓的task"""
         q = self._api.get_quote(self._symbol)
         async_log.debug("quote = await self._api.get_quote(self._symbol)",
@@ -128,15 +143,18 @@ class TargetPosScheduler(object):
                         check_rev = self._api._check_rev,
                         event_rev = self._api._event_rev,
                         wait_update_counter = self._api._wait_update_counter)
-        quote = await q
-
-        async_log.debug("quote = await self._api.get_quote(self._symbol)",
-                        my_event="resume",
-                        check_rev = self._api._check_rev,
-                        event_rev = self._api._event_rev,
-                        wait_update_counter = self._api._wait_update_counter)
+        try:
+            quote = await q
+        finally:
+            async_log.debug("quote = await self._api.get_quote(self._symbol)",
+                            my_event="resume",
+                            check_rev = self._api._check_rev,
+                            event_rev = self._api._event_rev,
+                            wait_update_counter = self._api._wait_update_counter)
         self._time_table['deadline'] = _get_deadline_from_interval(quote, self._time_table['interval'])
         target_pos_task = None
+        tag1_written = None
+        tag2_written = None
         try:
             _index = 0  # _index 表示下标
             for index, row in self._time_table.iterrows():
@@ -165,12 +183,15 @@ class TargetPosScheduler(object):
                                     check_rev = self._api._check_rev,
                                     event_rev = self._api._event_rev,
                                     wait_update_counter = self._api._wait_update_counter)
+                    tag1_written = False
                     async for _ in ch:
                         async_log.debug("async for _ in self._api.register_update_notify(quote)",
                                         my_event="resume",
                                         check_rev = self._api._check_rev,
                                         event_rev = self._api._event_rev,
                                         wait_update_counter = self._api._wait_update_counter)
+                        tag1_written = True
+
                         if _get_trade_timestamp(quote.datetime, float('nan')) > row['deadline']:
                             if target_pos_task:
                                 target_pos_task._task.cancel()
@@ -181,17 +202,42 @@ class TargetPosScheduler(object):
                                                 check_rev = self._api._check_rev,
                                                 event_rev = self._api._event_rev,
                                                 wait_update_counter = self._api._wait_update_counter)
-                                await asyncio.gather(target_pos_task._task, return_exceptions=True)
-                                async_log.debug("await asyncio.gather(target_pos_task._task, return_exceptions=True)",
-                                                my_event="resume",
-                                                check_rev = self._api._check_rev,
-                                                event_rev = self._api._event_rev,
-                                                wait_update_counter = self._api._wait_update_counter)
+                                try:
+                                    await asyncio.gather(target_pos_task._task, return_exceptions=True)
+                                finally:
+                                    async_log.debug("await asyncio.gather(target_pos_task._task, return_exceptions=True)",
+                                                    my_event="resume",
+                                                    check_rev = self._api._check_rev,
+                                                    event_rev = self._api._event_rev,
+                                                    wait_update_counter = self._api._wait_update_counter)
+
+                            tag1_written = False
+                            async_log.debug("async for _ in self._api.register_update_notify(quote)",
+                                            my_event="await",
+                                            depends = [id(ch)],
+                                            check_rev = self._api._check_rev,
+                                            event_rev = self._api._event_rev,
+                                            wait_update_counter = self._api._wait_update_counter)
                             break
+                        tag1_written = False
+                        async_log.debug("async for _ in self._api.register_update_notify(quote)",
+                                        my_event="await",
+                                        check_rev = self._api._check_rev,
+                                        event_rev = self._api._event_rev,
+                                        wait_update_counter = self._api._wait_update_counter)
+
+                    async_log.debug("async for _ in self._api.register_update_notify(quote)",
+                                    my_event="resume",
+                                    check_rev = self._api._check_rev,
+                                    event_rev = self._api._event_rev,
+                                    wait_update_counter = self._api._wait_update_counter)
+                    tag1_written = True
+
                 elif target_pos_task:  # 最后一项，如果有 target_pos_task 等待持仓调整完成，否则直接退出
                     position = self._account.get_position(self._symbol)
 
                     temp_chan = self._api.register_update_notify(position)
+                    tag2_written = False
                     async_log.debug("for _ in self._api.register_update_notify(position)",
                                     my_event="await",
                                     depends = [id(temp_chan)],
@@ -204,17 +250,48 @@ class TargetPosScheduler(object):
                                         check_rev = self._api._check_rev,
                                         event_rev = self._api._event_rev,
                                         wait_update_counter = self._api._wait_update_counter)
+                        tag2_written = True
+
                         if position.pos == row['target_pos']:
+                            tag2_written = False
+                            async_log.debug("for _ in self._api.register_update_notify(position)",
+                                            my_event="await",
+                                            depends = [id(temp_chan)],
+                                            check_rev = self._api._check_rev,
+                                            event_rev = self._api._event_rev,
+                                            wait_update_counter = self._api._wait_update_counter)
                             break
 
+                        tag2_written = False
                         async_log.debug("for _ in self._api.register_update_notify(position)",
                                         my_event="await",
                                         depends = [id(temp_chan)],
                                         check_rev = self._api._check_rev,
                                         event_rev = self._api._event_rev,
                                         wait_update_counter = self._api._wait_update_counter)
+                    async_log.debug("for _ in self._api.register_update_notify(position)",
+                                    my_event="resume",
+                                    check_rev = self._api._check_rev,
+                                    event_rev = self._api._event_rev,
+                                    wait_update_counter = self._api._wait_update_counter)
+                    tag2_written = True
+
                 _index = _index + 1
         finally:
+
+            if tag1_written == False:
+                async_log.debug("async for _ in self._api.register_update_notify(quote)",
+                                my_event="resume",
+                                check_rev = self._api._check_rev,
+                                event_rev = self._api._event_rev,
+                                wait_update_counter = self._api._wait_update_counter)
+            if tag2_written == False:
+                async_log.debug("for _ in self._api.register_update_notify(position)",
+                                my_event="resume",
+                                check_rev = self._api._check_rev,
+                                event_rev = self._api._event_rev,
+                                wait_update_counter = self._api._wait_update_counter)
+
             if target_pos_task:
 
                 target_pos_task._task.cancel()
@@ -226,13 +303,14 @@ class TargetPosScheduler(object):
                                 event_rev = self._api._event_rev,
                                 wait_update_counter = self._api._wait_update_counter)
 
-                await asyncio.gather(target_pos_task._task, return_exceptions=True)
-
-                async_log.debug('await asyncio.gather(target_pos_task._task, return_exceptions=True)',
-                                my_event="resume",
-                                check_rev = self._api._check_rev,
-                                event_rev = self._api._event_rev,
-                                wait_update_counter = self._api._wait_update_counter)
+                try:
+                    await asyncio.gather(target_pos_task._task, return_exceptions=True)
+                finally:
+                    async_log.debug('await asyncio.gather(target_pos_task._task, return_exceptions=True)',
+                                    my_event="resume",
+                                    check_rev = self._api._check_rev,
+                                    event_rev = self._api._event_rev,
+                                    wait_update_counter = self._api._wait_update_counter)
 
             async_log.debug('await self._trade_objs_chan.close()',
                             my_event="await",
@@ -240,12 +318,14 @@ class TargetPosScheduler(object):
                             check_rev = self._api._check_rev,
                             event_rev = self._api._event_rev,
                             wait_update_counter = self._api._wait_update_counter)
-            await self._trade_objs_chan.close()
-            async_log.debug('await self._trade_objs_chan.close()',
-                            my_event="resume",
-                            check_rev = self._api._check_rev,
-                            event_rev = self._api._event_rev,
-                            wait_update_counter = self._api._wait_update_counter)
+            try:
+                await self._trade_objs_chan.close()
+            finally:
+                async_log.debug('await self._trade_objs_chan.close()',
+                                my_event="resume",
+                                check_rev = self._api._check_rev,
+                                event_rev = self._api._event_rev,
+                                wait_update_counter = self._api._wait_update_counter)
 
 
             async_log.debug('await self._trade_recv_task',
@@ -254,12 +334,23 @@ class TargetPosScheduler(object):
                             check_rev = self._api._check_rev,
                             event_rev = self._api._event_rev,
                             wait_update_counter = self._api._wait_update_counter)
-            await self._trade_recv_task
-            async_log.debug('await self._trade_recv_task',
-                            my_event="resume",
-                            check_rev = self._api._check_rev,
-                            event_rev = self._api._event_rev,
-                            wait_update_counter = self._api._wait_update_counter)
+            try:
+                await self._trade_recv_task
+            finally:
+                async_log.debug('await self._trade_recv_task',
+                                my_event="resume",
+                                check_rev = self._api._check_rev,
+                                event_rev = self._api._event_rev,
+                                wait_update_counter = self._api._wait_update_counter)
+
+
+    async def _wrap_trade_recv(self):
+        async_log = self._log.bind(current_task = id(asyncio.current_task(self._api._loop)))
+        async_log.debug("_trade_recv", depends= [], my_event = 'await')
+        try:
+            await self._trade_recv()
+        finally:
+            async_log.debug("_trade_recv", depends= [], my_event = 'resume')
 
     async def _trade_recv(self):
         async_log = self._log.bind(current_task = id(asyncio.current_task(self._api._loop)))
@@ -270,23 +361,28 @@ class TargetPosScheduler(object):
                         check_rev = self._api._check_rev,
                         event_rev = self._api._event_rev,
                         wait_update_counter = self._api._wait_update_counter)
+        try:
+            async for trade in self._trade_objs_chan:
+                async_log.debug('async for trade in self._trade_objs_chan',
+                                my_event="resume",
+                                depends = [id(self._trade_objs_chan)],
+                                check_rev = self._api._check_rev,
+                                event_rev = self._api._event_rev,
+                                wait_update_counter = self._api._wait_update_counter)
 
-        async for trade in self._trade_objs_chan:
+                self.trades_df.loc[self.trades_df.shape[0]] = [trade[k] for k in self._trade_keys]
+                async_log.debug('async for trade in self._trade_objs_chan',
+                                my_event="await",
+                                depends = [id(self._trade_objs_chan)],
+                                check_rev = self._api._check_rev,
+                                event_rev = self._api._event_rev,
+                                wait_update_counter = self._api._wait_update_counter)
+        finally:
             async_log.debug('async for trade in self._trade_objs_chan',
                             my_event="resume",
-                            depends = [id(self._trade_objs_chan)],
                             check_rev = self._api._check_rev,
                             event_rev = self._api._event_rev,
                             wait_update_counter = self._api._wait_update_counter)
-
-            self.trades_df.loc[self.trades_df.shape[0]] = [trade[k] for k in self._trade_keys]
-            async_log.debug('async for trade in self._trade_objs_chan',
-                            my_event="await",
-                            depends = [id(self._trade_objs_chan)],
-                            check_rev = self._api._check_rev,
-                            event_rev = self._api._event_rev,
-                            wait_update_counter = self._api._wait_update_counter)
-
     def cancel(self):
         """
         取消当前 TargetPosScheduler 实例，会将该实例已经发出但还是未成交的委托单撤单。

@@ -38,6 +38,7 @@ from shinny_structlog import ShinnyLoggerAdapter, JSONFormatter
 
 import pandas as pd
 import requests
+import structlog
 from pandas import RangeIndex, Index
 from pandas._libs.internals import BlockPlacement
 if tuple(map(int, pd.__version__.split("."))) < (1, 3, 0):
@@ -199,6 +200,8 @@ class TqApi(TqBaseApi):
             api = TqApi(web_gui=":9876", auth=TqAuth("信易账户", "账户密码"))  # 等价于 api = TqApi(web_gui="0.0.0.0:9876", auth=TqAuth("信易账户", "账户密码"))
 
         """
+        self._log = structlog.get_logger(clazz = "TqApi")
+        self._log.debug("create", my_event = "wait")
 
         # 初始化 logger
         self._logger = logging.getLogger("TqApi")
@@ -292,8 +295,11 @@ class TqApi(TqBaseApi):
             # 多账户时，所有账户需要初始化完成
             trade_more_data = True
             while self._data.get("mdhis_more_data", True) or trade_more_data:
+                self._log.debug("if not self.wait_update(deadline=deadline)", my_event = "wait")
                 if not self.wait_update(deadline=deadline):  # 等待连接成功并收取截面数据
+                    self._log.debug("if not self.wait_update(deadline=deadline)", my_event = "complete")
                     raise TqTimeoutError("接收数据超时，请检查客户端及网络是否正常")
+                self._log.debug("if not self.wait_update(deadline=deadline)", my_event = "complete")
                 trade_more_data = self._account._get_trade_more_data_and_order_id(self._data)
         except:
             self.close()
@@ -301,6 +307,7 @@ class TqApi(TqBaseApi):
         # 使用空 list, 使得 is_changing() 返回 false, 因为截面数据不算做更新数据
         self._diffs = []
         self._sync_diffs = []
+        self._log.debug("create", my_event = "complete")
 
     def _print(self, msg: str = "", level: str = "INFO"):
         if self.disable_print:
@@ -1865,6 +1872,8 @@ class TqApi(TqBaseApi):
 
             可能输出 ""(空字符串), 表示还没有收到该合约的行情
         """
+        sync_log = self._log
+        sync_log.debug("wait_update", my_event = "wait")
         self._wait_update_counter = self._wait_update_counter + 1
         if self._loop.is_running():
             raise Exception("不能在协程中调用 wait_update, 如需在协程中等待业务数据更新请使用 register_update_notify")
@@ -1872,20 +1881,30 @@ class TqApi(TqBaseApi):
             raise Exception(
                 "TqSdk 使用了 python3 的原生协程和异步通讯库 asyncio，您所使用的 IDE 不支持 asyncio, 请使用 pycharm 或其它支持 asyncio 的 IDE")
         self._wait_timeout = False
+        sync_log.debug("self._run_until_idle(async_run=False)", my_event = "wait")
         # 先尝试执行各个task,再请求下个业务数据，可能用户的同步代码会在 chan 中 send 数据，需要先 run_tasks
         self._run_until_idle(async_run=False)
+        sync_log.debug("self._run_until_idle(async_run=False)", my_event = "complete")
 
         # 用户可能在同步或者异步代码中修改 klines 附加列的值
         #    同步代码：此次调用 wait_update 之前应该已经修改执行
         #    异步代码：上一行 self._run_until_idle() 可能会修改 klines 附加列的值
         # 所以放在这里处理， 总会发送 serial_extra_array 数据，由 TqWebHelper 处理
+
+        sync_log.debug("for _, serial in self._serials.items()", my_event = "wait")
         for _, serial in self._serials.items():
+            sync_log.debug("self._process_serial_extra_array(serial)", my_event = "wait")
             self._process_serial_extra_array(serial)
+            sync_log.debug("self._process_serial_extra_array(serial)", my_event = "complete")
+        sync_log.debug("for _, serial in self._serials.items()", my_event = "complete")
+        sync_log.debug("self._run_until_idle(async_run=False)", my_event = "wait")
         self._run_until_idle(async_run=False)  # 这里 self._run_until_idle() 主要为了把上一步计算出得需要绘制的数据发送到 TqWebHelper
+        sync_log.debug("self._run_until_idle(async_run=False)", my_event = "complete")
         if _task is not None:
             # 如果 _task 已经 done，则提前返回 True, False 代表超时会抛错
             _tasks = _task if isinstance(_task, list) else [_task]
             if all([t.done() for t in _tasks]):
+                sync_log.debug("wait_update", my_event = "complete")
                 return True
         if not self._is_slave and not self._pending_peek:
             self._send_chan.send_nowait({
@@ -1896,7 +1915,9 @@ class TqApi(TqBaseApi):
         # 先 _fetch_msg 再判断 deadline, 避免当 deadline 立即触发时无法接收数据
         update_task = self.create_task(self._fetch_msg())
         try:
+            sync_log.debug("self._run_until_task_done(task=update_task, deadline=deadline)", my_event= 'wait')
             self._run_until_task_done(task=update_task, deadline=deadline)
+            sync_log.debug("self._run_until_task_done(task=update_task, deadline=deadline)", my_event= 'complete')
             return len(self._pending_diffs) != 0
         finally:
             if len(self._pending_diffs) > 0:
@@ -1926,6 +1947,7 @@ class TqApi(TqBaseApi):
                             self._update_serial_single(serial)
                         else:  # 订阅多个合约
                             self._update_serial_multi(serial)
+            sync_log.debug("wait_update", my_event = "complete")
 
     # ----------------------------------------------------------------------
     def is_changing(self, obj: Any, key: Union[str, List[str], None] = None) -> bool:
@@ -3633,9 +3655,40 @@ class TqApi(TqBaseApi):
                     account_name = notify[n].get('_account_name', '')
                     self._print(f"通知 {account_name}: {notify[n]['content']}", level=level)
 
+    async def _warp_fetch_msg(self):
+        async_log = self._log.bind(current_task = id(asyncio.current_task(self._loop)))
+        async_log.debug("_fetch_msg", my_event = "await", depends = [],
+                        check_rev = self._check_rev,
+                        event_rev = self._event_rev,
+                        wait_update_counter = self._wait_update_counter)
+        try:
+            await self._fetch_msg()
+        finally:
+            async_log.debug("_fetch_msg", my_event = "resume", 
+                            check_rev = self._check_rev,
+                            event_rev = self._event_rev,
+                            wait_update_counter = self._wait_update_counter)
+
     async def _fetch_msg(self):
+        async_log = self._log.bind(current_task = id(asyncio.current_task(self._loop)))
+        
+
         while not self._pending_diffs:
-            pack = await self._recv_chan.recv()
+            async_log.debug("pack = await self._recv_chan.recv()",
+                            my_event = "await",
+                            depends = [id(self._recv_chan)],
+                            check_rev = self._check_rev,
+                            event_rev = self._event_rev,
+                            wait_update_counter = self._wait_update_counter)
+            try:
+                pack = await self._recv_chan.recv()
+            finally:
+                async_log.debug("pack = await self._recv_chan.recv()",
+                                my_event = "resume",
+                                depends = [id(self._recv_chan)],
+                                check_rev = self._check_rev,
+                                event_rev = self._event_rev,
+                                wait_update_counter = self._wait_update_counter)
             if not self._is_slave:
                 for slave in self._slaves:
                     slave._slave_recv_pack(copy.deepcopy(pack))
