@@ -1,14 +1,15 @@
-import json
+import orjson
 import datetime
+import json
 from collections import defaultdict
 import argparse
 import xxhash
 
 def load_file_as_line_by_line_json(filename):
-    with open(filename, 'r') as f:
+    with open(filename, 'r', encoding = 'utf-8') as f:
         for line in f:
             try:
-                obj = json.loads(line)
+                obj = orjson.loads(line)
                 yield obj
             except json.JSONDecodeError as e:
                 continue
@@ -33,7 +34,6 @@ def convert_to_chrome_trace(json_list):
     # pid as key,
     reuse_tid_map = defaultdict(lambda:defaultdict(lambda:[]))
     
-    canbe_reuse_tid = defaultdict(lambda:[])
 
 
     yield {
@@ -73,24 +73,30 @@ def convert_to_chrome_trace(json_list):
         # empty async_stack
         # (because finished async task will pop out all entries)
         entry_prefix = tid.split(":")[0]
-        canbe_reuse= [x for x in canbe_reuse_tid[pid] if x.startswith(entry_prefix)]
+        canbe_reuse= [x for x in async_stack_map[pid] if x.startswith(entry_prefix)]
+        canbe_reuse = [x for x in canbe_reuse if len(async_stack_map[pid][x]) == 0]
         if len(canbe_reuse) == 0:
             # no empty stack can be reused
             reuse_tid_map[pid][tid] = tid
+            
             return tid
         # can be reuse
         remapped = canbe_reuse[0]
         assert len(async_stack_map[pid][remapped]) == 0
-        canbe_reuse_tid[pid].remove(remapped)
         reuse_tid_map[pid][tid] = remapped
         return remapped
 
+    last_ms = 0
+    last_counter = 0
     for event_counter,json_obj in enumerate(json_list):
+
         if prev_timestamp is None:
             prev_timestamp = try_parse_time(json_obj['timestamp'])
 
         this_timeoffset = try_parse_time(json_obj['timestamp']) - prev_timestamp
         ms = this_timeoffset.total_seconds() * 1000000
+        last_ms = ms
+        last_counter = event_counter
 
         if json_obj['func_name'].startswith("_wrap"):
             # remove _wrap prefix from string
@@ -103,7 +109,28 @@ def convert_to_chrome_trace(json_list):
         if json_obj['my_event'] in ['await','resume']:
             async_pid = json_obj['symbol'] if 'symbol' in json_obj else json_obj['clazz']
             async_tid = (json_obj['clazz']+"."+json_obj['func_name'] if 'symbol' in json_obj else json_obj['func_name'])+":"+str(json_obj['current_task'])
+            if async_pid not in async_stack_map:
+                # this is first time process appear
+                yield {
+                    'ph': 'M',
+                    'name': 'process_name',
+                    'pid': xxhash.xxh32(async_pid).intdigest(),
+                    'args': {
+                        "name": async_pid
+                    }
+                }
+
             async_remap_tid = get_remap_tid(async_pid, async_tid)
+            if async_remap_tid not in async_stack_map[async_pid]:
+                yield {
+                    'ph': "M",
+                    'name': 'thread_name',
+                    'pid': xxhash.xxh32(async_pid).intdigest(),
+                    'tid': xxhash.xxh32(async_pid+async_remap_tid).intdigest(),
+                    'args': {
+                        'name': async_remap_tid
+                    }
+                }
 
 
         if json_obj['my_event'] == 'await':
@@ -121,28 +148,7 @@ def convert_to_chrome_trace(json_list):
                 'args': json_obj
             }
 
-            if async_pid not in async_stack_map:
-                # this is first time process appear
-                yield {
-                    'ph': 'M',
-                    'name': 'process_name',
-                    'pid': xxhash.xxh32(async_pid).intdigest(),
-                    'args': {
-                        "name": async_pid
-                    }
 
-                }
-
-            if async_remap_tid not in async_stack_map[async_pid]:
-                yield {
-                    'ph': "M",
-                    'name': 'thread_name',
-                    'tid': xxhash.xxh32(async_pid+async_remap_tid).intdigest(),
-                    'pid': xxhash.xxh32(async_pid).intdigest(),
-                    'args': {
-                        'name': async_remap_tid
-                    }
-                }
 
 
             async_stack_map[async_pid][async_tid].append(start_event)
@@ -164,7 +170,6 @@ def convert_to_chrome_trace(json_list):
             poped = stack.pop()
             assert poped['name'] == json_obj['event']
             if len(stack) == 0:
-                canbe_reuse_tid[async_pid].append(async_remap_tid)
                 del reuse_tid_map[async_pid][async_tid]
             yield end_event
         elif json_obj['my_event'] == 'wait':
@@ -196,6 +201,27 @@ def convert_to_chrome_trace(json_list):
         else:
             pass
 
+    # no matter which state, always create a end event time with 1s advanced,
+    # so trace unfinished event will appear
+    yield {
+                'name': "fake_end",
+                'cat': 'function',
+                'ph': 'B',
+                'ts': last_ms + 1 * 1000000,
+                'pid': xxhash.xxh32('fake_end').intdigest(),
+                'tid': xxhash.xxh32('fake_end').intdigest(),
+                'id': last_counter + 1
+    }
+
+    yield {
+                'cat': 'function',
+                'ph': 'E',
+                'ts': last_ms + 2 * 1000000,
+                'pid': xxhash.xxh32('fake_end').intdigest(),
+                'tid': xxhash.xxh32('fake_end').intdigest(),
+                'id': last_counter + 2
+    }
+
 def filter_my_event_log_only(json_stream):
     for json in json_stream:
         if 'my_event' not in json or json['my_event'] not in ['await','resume','wait','complete']:
@@ -206,11 +232,13 @@ def filter_my_event_log_only(json_stream):
 def convert(trace):
     chrome_json = convert_to_chrome_trace(filter_my_event_log_only(load_file_as_line_by_line_json(trace)))
 
-    with open(trace + '.chrome.json','w') as f:
-        f.write('[\n')
+    newline = ',\n'.encode('utf-8')
+    start = '[\n'.encode('utf-8')
+    with open(trace + '.chrome.json','wb') as f:
+        f.write(start)
         for obj in chrome_json:
-            f.write(json.dumps(obj))
-            f.write(',\n')
+            f.write(orjson.dumps(obj))
+            f.write(newline)
 
 
 if __name__ == '__main__': 
